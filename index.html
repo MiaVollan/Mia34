@@ -10,53 +10,39 @@
   --bg:#0d0d1a;--surf:#1a1a2e;--card:#232336;--brd:#2d2d45;
   --txt:#f0f0ff;--mut:#8888aa}
 body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:430px;margin:0 auto;padding-bottom:76px;min-height:100vh}
-
-/* ── NAV ── */
 #nav{position:sticky;bottom:0;background:var(--surf);border-top:1px solid var(--brd);display:flex;z-index:100}
 .nb{flex:1;padding:10px 2px 8px;background:none;border:none;color:var(--mut);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px}
 .nb.on{color:var(--red)}.nb span{font-size:20px}
-
-/* ── SETUP OVERLAY ── */
-#setup{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:16px}
+#setup{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:14px;overflow-y:auto}
 #setup.hide{display:none}
-.setup-avatar{width:90px;height:90px;border-radius:50%;background:var(--surf);border:2px dashed var(--brd);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;margin:0 auto}
-.setup-avatar img{width:100%;height:100%;object-fit:cover}
-
-/* ── CARDS / INPUTS ── */
+.setup-av{width:86px;height:86px;border-radius:50%;background:var(--surf);border:2px dashed var(--brd);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;margin:0 auto}
+.setup-av img{width:100%;height:100%;object-fit:cover}
 .card{background:var(--card);border-radius:14px;padding:16px;margin:0 14px 12px;border:1px solid var(--brd)}
 .lbl{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
 input,select{background:var(--surf);border:1px solid var(--brd);border-radius:10px;color:var(--txt);padding:10px 12px;font-size:15px;width:100%;outline:none}
-input:focus,select:focus{border-color:var(--red)}select option{background:var(--surf)}
+input:focus,select:focus{border-color:var(--red)}
+select option{background:var(--surf)}
 .btn{background:var(--red);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
-.btn:active{opacity:.8}.btn.gray{background:var(--brd)}.btn.blue{background:var(--blue)}.btn.sm{padding:7px 14px;font-size:13px;width:auto;border-radius:8px}
-
-/* ── TOPBAR ── */
+.btn:active{opacity:.8}.btn.gray{background:var(--brd);color:var(--txt)}.btn.blue{background:var(--blue)}.btn.sm{padding:7px 14px;font-size:13px;width:auto;border-radius:8px}
 .topbar{background:var(--surf);padding:12px 14px 10px;border-bottom:1px solid var(--brd);position:sticky;top:0;z-index:50}
 .topbar h1{font-size:17px;font-weight:700}.topbar p{font-size:12px;color:var(--mut);margin-top:2px}
-
-/* ── SCORE BOARD ── */
 #scoreboard{background:var(--blue);border-radius:14px;padding:18px 14px;margin:14px;text-align:center}
 .teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .tflag{font-size:32px;display:block;margin-bottom:3px}
-.tname{font-size:13px;font-weight:600;flex:1}.score-n{font-size:48px;font-weight:900;letter-spacing:4px;color:#fff;padding:0 10px}
+.tname{font-size:13px;font-weight:600;flex:1}
+.score-n{font-size:48px;font-weight:900;letter-spacing:4px;color:#fff;padding:0 10px}
 .score-st{font-size:12px;color:rgba(255,255,255,.7);margin-top:4px}
 .ldot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--brd);border-top-color:var(--red);border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;margin-right:5px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;margin-right:5px}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-/* ── TABS ── */
 .tab{display:none}.tab.on{display:block}
-
-/* ── TIPP ROWS ── */
 .trow{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--brd)}.trow:last-child{border:none}
-.tavatar{width:34px;height:34px;border-radius:50%;background:var(--surf);overflow:hidden;flex-shrink:0;margin-right:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
-.tavatar img{width:100%;height:100%;object-fit:cover}
+.tav{width:36px;height:36px;border-radius:50%;background:var(--surf);overflow:hidden;flex-shrink:0;margin-right:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.tav img{width:100%;height:100%;object-fit:cover}
 .tinfo{flex:1}.tname2{font-size:14px;font-weight:600}.tpick{font-size:12px;color:var(--mut);margin-top:2px}
 .tpts{font-size:20px;font-weight:800;color:var(--gold)}
 .medal{font-size:18px;width:26px;text-align:center}
-
-/* ── PITCH ── */
 .pitch{background:#2d5a1b;border-radius:12px;padding:14px;text-align:center;border:2px solid #3d7a2b}
 .goalpost{width:120px;height:68px;border:3px solid #fff;border-bottom:none;margin:0 auto 10px;display:grid;grid-template-columns:repeat(3,1fr);border-radius:4px 4px 0 0}
 .gcell{border-right:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer}
@@ -65,50 +51,44 @@ input:focus,select:focus{border-color:var(--red)}select option{background:var(--
 .kicks{display:flex;justify-content:center;gap:8px;margin-top:8px}
 .kick{width:14px;height:14px;border-radius:50%;background:var(--brd)}
 .kick.goal{background:var(--green)}.kick.saved{background:var(--red)}.kick.cur{background:var(--gold)}
-
-/* ── QUIZ ── */
 .qopt{background:var(--surf);border:1px solid var(--brd);border-radius:10px;padding:12px 16px;margin-bottom:8px;cursor:pointer;font-size:14px;line-height:1.4}
-.qopt:hover{border-color:var(--mut)}.qopt.correct{border-color:var(--green);background:rgba(74,222,128,.1);color:var(--green)}
-.qopt.wrong{border-color:var(--red);background:rgba(239,43,45,.1);color:var(--red)}
-.qopt.done{cursor:default}
-
-/* ── PHOTO WALL ── */
+.qopt:hover{border-color:var(--mut)}
+.qopt.correct{border-color:var(--green) !important;background:rgba(74,222,128,.1);color:var(--green)}
+.qopt.wrong{border-color:var(--red) !important;background:rgba(239,43,45,.1);color:var(--red)}
+.qopt.done{cursor:default;pointer-events:none}
 .photowall{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 14px}
-.photocell{border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--surf);border:1px solid var(--brd);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--mut);text-align:center;gap:4px}
+.photocell{border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--surf);border:1px solid var(--brd);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--mut);text-align:center;gap:4px}
 .photocell img{width:100%;height:100%;object-fit:cover}
-
-/* ── MISC ── */
+.photocell .pname{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.65);padding:3px;font-size:10px;text-align:center}
 .row{display:flex;gap:8px;align-items:center}.rbet{display:flex;justify-content:space-between;align-items:center}
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
 .mut{color:var(--mut);font-size:13px}.bold{font-weight:600}
-.chip{display:inline-block;background:var(--surf);border:1px solid var(--brd);border-radius:20px;padding:3px 10px;font-size:12px;color:var(--mut)}
-.green{color:var(--green)}.err{color:var(--red);font-size:13px}
-
-/* ── GOAL FLASH ── */
-#gflash{position:fixed;inset:0;background:rgba(239,43,45,.88);z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
+#gflash{position:fixed;inset:0;background:rgba(239,43,45,.9);z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
 #gflash.hide{display:none}
-#gflash h1{font-size:60px;font-weight:900}#gflash p{font-size:22px;margin-top:6px}
+#gflash h1{font-size:60px;font-weight:900}
+.fb-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:20px;border:1px solid var(--brd)}
+.fb-dot{width:7px;height:7px;border-radius:50%;background:var(--mut)}
+.fb-dot.ok{background:var(--green)}.fb-dot.err{background:var(--red)}
 
-/* ── CONFIG NOTICE ── */
-#cfg-notice{background:#2a1a0a;border:1px solid #8B4513;border-radius:10px;padding:12px;margin:14px;font-size:13px;color:#ffc;line-height:1.6}
+/* FIREBASE SETUP SCREEN */
+#fb-setup{background:rgba(0,0,0,.9);border:1px solid #8B4513;border-radius:14px;padding:16px;margin:14px}
 </style>
 </head>
 <body>
 
-<!-- ⚙️ FIREBASE CONFIG – REDIGER DETTE! -->
+<!-- ⚙️ KONFIGURASJON — REDIGER DISSE TO LINJENE -->
 <script>
-const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
-// Eks: 'https://mia-party-default-rtdb.firebaseio.com'
-// Se instruksjonene under appen for å sette opp gratis Firebase
+var FIREBASE_HARD = 'PASTE_FIREBASE_URL_HERE';
+var ADMIN_NICK    = 'Mia';   // Kun dette kallenavnet ser admin-panel
 </script>
 
 <!-- GOAL FLASH -->
 <div id="gflash" class="hide">
   <div style="font-size:64px">⚽</div>
   <h1>MÅL!</h1>
-  <p id="gflash-txt">Norge scorer!</p>
-  <p style="font-size:16px;margin-top:10px;color:rgba(255,255,255,.7)" id="gflash-score"></p>
-  <button class="btn mt16" style="border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.3)" onclick="document.getElementById('gflash').classList.add('hide')">Lukk</button>
+  <p id="gf-txt" style="font-size:22px;margin-top:6px"></p>
+  <p style="font-size:16px;margin-top:8px;color:rgba(255,255,255,.7)" id="gf-score"></p>
+  <button class="btn mt16" style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.4)" onclick="document.getElementById('gflash').classList.add('hide')">Lukk</button>
 </div>
 
 <!-- SETUP OVERLAY -->
@@ -116,45 +96,57 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
   <div style="text-align:center">
     <div style="font-size:48px">🎂⚽</div>
     <h1 style="margin-top:10px;font-size:22px">Mia's VM-fest!</h1>
-    <p class="mut" style="margin-top:4px">Skriv inn kallenavnet ditt for å delta</p>
+    <p style="color:var(--mut);font-size:14px;margin-top:4px">Skriv inn kallenavnet ditt</p>
   </div>
-  <div id="setup-avatar-wrap" style="cursor:pointer" onclick="document.getElementById('avatar-input').click()">
-    <div class="setup-avatar" id="setup-avatar-circle"><span style="font-size:32px">📷</span></div>
-    <p class="mut" style="text-align:center;font-size:12px;margin-top:6px">Trykk for å laste opp bilde</p>
+  <div onclick="document.getElementById('av-inp').click()" style="cursor:pointer">
+    <div class="setup-av" id="av-circle"><span style="font-size:32px">📷</span></div>
+    <p style="color:var(--mut);font-size:12px;text-align:center;margin-top:6px">Trykk for å laste opp bilde av deg selv</p>
   </div>
-  <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="previewAvatar(this)">
-  <div style="width:100%">
-    <input id="setup-name" placeholder="Kallenavn (f.eks. Mia 🎉)" maxlength="20" style="font-size:16px;text-align:center">
-    <div id="setup-err" class="err mt8" style="text-align:center"></div>
+  <input type="file" id="av-inp" accept="image/*" style="display:none" onchange="previewAv(this)">
+  <div style="width:100%;max-width:340px">
+    <input id="su-name" placeholder="Kallenavn (f.eks. Mia 🎉)" maxlength="20" style="font-size:16px;text-align:center">
+    <div id="su-err" style="color:var(--red);font-size:13px;text-align:center;margin-top:6px;min-height:18px"></div>
   </div>
-  <button class="btn" onclick="doSetup()">Bli med på festen!</button>
-  <p class="mut" style="font-size:12px;text-align:center">Kallenavnet brukes på poengtavlen og er synlig for alle</p>
+  <button class="btn" style="max-width:340px" onclick="doSetup()">Bli med på festen! 🎉</button>
 </div>
 
 <!-- MAIN APP -->
 <div id="app" style="display:none">
 
-<!-- ===== LIVE TAB ===== -->
+<!-- ===== LIVE ===== -->
 <div id="t-live" class="tab on">
-  <div class="topbar"><h1>🇳🇴 Norge – Frankrike 🇫🇷</h1><p>26. juni · kl. 21:00 · Gillette Stadium, Boston</p></div>
-  <div id="cfg-notice" style="display:none">
-    ⚠️ <strong>Firebase ikke koblet til.</strong> Score er bare synlig på denne enheten.<br>
-    Se instruksjonene nederst på festen-fanen for å koble til delt database.
+  <div class="topbar">
+    <div class="rbet">
+      <div><h1>🇳🇴 Norge – Frankrike 🇫🇷</h1><p>26. juni · kl. 21:00 · Gillette Stadium</p></div>
+      <div class="fb-status" id="fb-ind"><div class="fb-dot" id="fb-dot"></div><span id="fb-txt">Kobler...</span></div>
+    </div>
   </div>
+
+  <!-- Firebase setup for admin (hidden for non-admins) -->
+  <div id="fb-setup" style="display:none">
+    <div style="font-size:14px;font-weight:600;color:#ffc;margin-bottom:8px">⚙️ Firebase ikke koblet til</div>
+    <p style="font-size:12px;color:var(--mut);margin-bottom:10px;line-height:1.6">
+      Lim inn Firebase database-URL for å dele data med alle gjestene.<br>
+      <a href="https://console.firebase.google.com" target="_blank" style="color:#4ade80">console.firebase.google.com</a> → Realtime Database → URL
+    </p>
+    <input id="fb-url-inp" placeholder="https://xxx-rtdb.firebaseio.com" style="font-size:13px;margin-bottom:8px">
+    <button class="btn" onclick="saveFirebaseUrl()">Koble til Firebase</button>
+    <div id="fb-test-msg" class="mt8 mut" style="font-size:12px;text-align:center"></div>
+  </div>
+
   <div id="scoreboard">
     <div class="teams">
       <div class="tname" style="text-align:left"><span class="tflag">🇳🇴</span>Norge</div>
-      <div class="score-n" id="score-disp">0 – 0</div>
+      <div class="score-n" id="sc-disp">0 – 0</div>
       <div class="tname" style="text-align:right"><span class="tflag">🇫🇷</span>Frankrike</div>
     </div>
-    <div class="score-st" id="score-st"><span class="spin"></span>Kobler til...</div>
-    <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.45)" id="score-upd"></div>
+    <div class="score-st" id="sc-st"><span class="spin"></span>Kobler til...</div>
+    <div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,.4)" id="sc-upd"></div>
   </div>
 
   <div class="card">
-    <div class="lbl">🔔 Målvarsler</div>
     <div class="rbet">
-      <div class="mut" id="notif-st">Aktiver for å få varsel ved mål</div>
+      <div><div class="bold" style="font-size:14px">🔔 Målvarsler</div><div class="mut" id="notif-st">Aktiver for å få varsel ved mål</div></div>
       <button class="btn sm" id="notif-btn" onclick="askNotif()">Aktiver</button>
     </div>
   </div>
@@ -164,15 +156,15 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
     <div id="scorers-list"></div>
   </div>
 
-  <div class="card">
-    <div class="lbl">Admin – Oppdater score</div>
-    <p class="mut" style="margin-bottom:10px;font-size:12px">Synlig for alle tilkoblede gjester via Firebase</p>
+  <!-- ADMIN ONLY -->
+  <div class="card" id="admin-panel" style="display:none;border-color:#4a3020">
+    <div class="lbl" style="color:var(--gold)">👑 Admin – kun synlig for deg</div>
     <div class="row" style="gap:8px;margin-bottom:8px">
       <div style="flex:1;text-align:center">
         <div class="mut" style="font-size:11px;margin-bottom:4px">🇳🇴 Norge</div>
         <input type="number" id="m-home" min="0" max="20" value="0" style="text-align:center;font-size:22px;font-weight:800">
       </div>
-      <div style="padding-top:20px;font-size:18px;color:var(--mut)">–</div>
+      <div style="padding-top:22px;font-size:18px;color:var(--mut)">–</div>
       <div style="flex:1;text-align:center">
         <div class="mut" style="font-size:11px;margin-bottom:4px">🇫🇷 Frankrike</div>
         <input type="number" id="m-away" min="0" max="20" value="0" style="text-align:center;font-size:22px;font-weight:800">
@@ -192,12 +184,11 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
   </div>
 </div>
 
-<!-- ===== TIPP TAB ===== -->
+<!-- ===== TIPP ===== -->
 <div id="t-tipp" class="tab">
   <div class="topbar"><h1>🎯 Tippelaget</h1><p>Tips stenger kl. 21:00 ved kampstart</p></div>
-  <div class="card" id="tip-form">
-    <div class="lbl">Ditt tips</div>
-    <div class="chip" style="margin-bottom:10px">Spiller du som: <strong id="tip-as"></strong></div>
+  <div class="card">
+    <div class="lbl">Ditt tips (<span id="tip-as"></span>)</div>
     <div class="row" style="gap:8px;margin-bottom:8px">
       <div style="flex:1;text-align:center">
         <div class="mut" style="font-size:11px;margin-bottom:4px">🇳🇴 Norge</div>
@@ -220,18 +211,18 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
       <option>Ingen mål – 0–0</option>
     </select>
     <button class="btn" onclick="sendTip()">Send inn tips</button>
-    <div id="tip-msg" class="mt8" style="text-align:center;font-size:13px"></div>
+    <div id="tip-msg" class="mt8" style="text-align:center;font-size:13px;min-height:18px"></div>
   </div>
   <div class="card">
     <div class="rbet" style="margin-bottom:10px">
       <div class="lbl" style="margin:0">Poengtavle</div>
       <div class="mut" style="font-size:11px">Poeng beregnes etter kamp</div>
     </div>
-    <div id="tip-lb"></div>
+    <div id="tip-lb"><div class="mut" style="text-align:center;padding:20px">Ingen tips ennå</div></div>
   </div>
   <div class="card" style="border-color:#333355">
     <div class="lbl">Poengutdeling</div>
-    <div class="mut" style="font-size:13px;line-height:1.8">
+    <div class="mut" style="font-size:13px;line-height:1.9">
       🏆 Eksakt resultat: <strong style="color:var(--gold)">5 p</strong><br>
       ✅ Riktig utfall: <strong style="color:var(--gold)">2 p</strong><br>
       ⚽ Riktig norsk scorer: <strong style="color:var(--gold)">2 p</strong><br>
@@ -240,97 +231,88 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
   </div>
 </div>
 
-<!-- ===== SPILL TAB ===== -->
+<!-- ===== SPILL ===== -->
 <div id="t-spill" class="tab">
-  <div class="topbar"><h1>🎮 Spill</h1><p>Penalty: maks 3 forsøk per person</p></div>
-
+  <div class="topbar"><h1>🎮 Spill</h1><p>Penalty: maks 3 runder per person</p></div>
   <div class="card">
     <div class="lbl">Penaltysparka</div>
-    <div id="pen-limit-msg" class="mut" style="font-size:13px;margin-bottom:8px"></div>
+    <div id="pen-limit" class="mut" style="font-size:13px;margin-bottom:8px"></div>
     <div class="pitch">
       <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:8px" id="pen-msg">Velg hjørne!</div>
-      <div id="goalpost" class="goalpost">
+      <div class="goalpost">
         <div class="gcell" id="gc0" onclick="shoot(0)"></div>
         <div class="gcell" id="gc1" onclick="shoot(1)"></div>
         <div class="gcell" id="gc2" onclick="shoot(2)"></div>
       </div>
-      <div style="width:126px;height:3px;background:rgba(255,255,255,.25);margin:0 auto;border-radius:2px"></div>
+      <div style="width:126px;height:3px;background:rgba(255,255,255,.2);margin:0 auto;border-radius:2px"></div>
       <div class="kicks mt8" id="kick-dots"></div>
     </div>
-    <div class="row" style="margin-top:8px">
-      <div style="flex:1;text-align:center"><div class="mut" style="font-size:11px">Runde</div><div style="font-size:22px;font-weight:800" id="pen-round">1/3</div></div>
-      <div style="flex:1;text-align:center"><div class="mut" style="font-size:11px">Mål</div><div style="font-size:22px;font-weight:800" id="pen-goals">0</div></div>
-      <div style="flex:1;text-align:center"><div class="mut" style="font-size:11px">Rekord</div><div style="font-size:22px;font-weight:800;color:var(--gold)" id="pen-record">–</div></div>
+    <div class="row" style="margin-top:10px;text-align:center">
+      <div style="flex:1"><div class="mut" style="font-size:11px">Runde</div><div style="font-size:22px;font-weight:800" id="pen-round">1/3</div></div>
+      <div style="flex:1"><div class="mut" style="font-size:11px">Mål</div><div style="font-size:22px;font-weight:800" id="pen-goals">0</div></div>
+      <div style="flex:1"><div class="mut" style="font-size:11px">Rekord</div><div style="font-size:22px;font-weight:800;color:var(--gold)" id="pen-rec">–</div></div>
     </div>
-    <div id="pen-res" class="mut" style="text-align:center;margin-top:8px;font-size:14px"></div>
-    <button class="btn mt8" id="pen-next" style="display:none" onclick="nextRound()">Neste runde</button>
-    <button class="btn gray mt8" id="pen-done-btn" style="display:none" onclick="penAllDone()">Alle runder fullført</button>
+    <div id="pen-res" class="mut" style="text-align:center;margin-top:8px;font-size:14px;min-height:18px"></div>
+    <button class="btn mt8" id="pen-next" style="display:none" onclick="nextRound()">Neste runde →</button>
   </div>
 
   <div class="card">
     <div class="lbl">Reaksjonstest – dommerkort!</div>
-    <p class="mut" style="font-size:13px;margin-bottom:10px">Trykk så fort du kan når det røde kortet vises!</p>
+    <p class="mut" style="font-size:13px;margin-bottom:10px">Trykk så fort du kan når rødt kort vises!</p>
     <div id="rxbox" style="background:var(--surf);border-radius:10px;padding:28px;text-align:center;cursor:pointer;font-size:52px;border:1px solid var(--brd)" onclick="rxClick()">🟢</div>
     <div class="mt8 mut" style="text-align:center;font-size:13px" id="rx-msg">Trykk for å starte</div>
     <div id="rx-res" class="mt8"></div>
   </div>
 </div>
 
-<!-- ===== QUIZ TAB ===== -->
+<!-- ===== QUIZ ===== -->
 <div id="t-quiz" class="tab">
   <div class="topbar"><h1>🧠 VM-quiz</h1><p>Kun ett forsøk – 8 spørsmål</p></div>
   <div class="card" id="quiz-wrap"></div>
 </div>
 
-<!-- ===== TOPP TAB ===== -->
+<!-- ===== TOPP ===== -->
 <div id="t-topp" class="tab">
-  <div class="topbar"><h1>🏆 Totalpoeng</h1><p>Kombinert fra alle aktiviteter</p></div>
+  <div class="topbar"><h1>🏆 Totalpoeng</h1><p>Kombinert – oppdateres live</p></div>
   <div class="card">
-    <div class="rbet" style="margin-bottom:10px">
-      <div class="lbl" style="margin:0">Rangering</div>
-      <div class="mut" style="font-size:11px">Oppdateres live</div>
-    </div>
-    <div id="total-lb"></div>
+    <div id="total-lb"><div class="mut" style="text-align:center;padding:20px">Ingen poeng ennå</div></div>
   </div>
   <div class="card" style="border-color:#333355">
     <div class="lbl">Poengfordeling</div>
     <div class="mut" style="font-size:13px;line-height:1.9">
-      🎯 Tipping: maks 10 p<br>🧠 Quiz: 1 p per riktig (maks 8 p)<br>⚽ Penalty: beste runde (maks 5 p)<br>⚡ Reaksjon: raskeste tid (maks 3 p)
+      🎯 Tipping: maks 10 p · 🧠 Quiz: 1 p/spm (maks 8 p)<br>
+      ⚽ Penalty: beste runde (maks 5 p) · ⚡ Reaksjon: maks 3 p
     </div>
   </div>
 
-  <!-- Photo wall -->
-  <div class="topbar" style="position:static;margin-top:4px"><h1>📸 Bildegalleri</h1><p>Festbilder fra alle gjestene</p></div>
+  <div class="topbar" style="position:static;margin-top:8px"><h1>📸 Bildegalleri</h1><p>Last opp bilde av deg selv</p></div>
   <div class="card" style="margin-bottom:8px">
-    <div class="lbl">Last opp bilde</div>
     <div style="display:flex;gap:10px;align-items:center">
-      <div id="my-avatar-prev" style="width:52px;height:52px;border-radius:50%;background:var(--surf);border:1px solid var(--brd);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">📷</div>
+      <div id="my-av" style="width:52px;height:52px;border-radius:50%;background:var(--surf);border:1px solid var(--brd);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px">📷</div>
       <div style="flex:1">
-        <button class="btn sm" onclick="document.getElementById('photo-inp').click()">Velg bilde</button>
-        <input type="file" id="photo-inp" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
-        <div class="mut" style="font-size:11px;margin-top:4px">Bildet vises i galleriet for alle gjester</div>
+        <button class="btn sm" onclick="document.getElementById('ph-inp').click()">Velg bilde</button>
+        <input type="file" id="ph-inp" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
+        <div class="mut" style="font-size:11px;margin-top:4px">Vises i galleriet for alle</div>
       </div>
     </div>
-    <div id="photo-msg" class="mt8 mut" style="font-size:12px;text-align:center"></div>
+    <div id="ph-msg" class="mt8 mut" style="font-size:12px;text-align:center;min-height:16px"></div>
   </div>
   <div class="photowall" id="photo-wall"></div>
 
-  <!-- Program -->
-  <div class="topbar" style="position:static;margin-top:4px"><h1>🗓 Kveldens program</h1><p></p></div>
-  <div class="card">
+  <div class="topbar" style="position:static;margin-top:8px"><h1>🗓 Kveldens program</h1><p></p></div>
+  <div class="card" style="margin-bottom:24px">
     <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--gold)">18:30</div><div><div class="bold">Dørene åpner</div><div class="mut" style="font-size:12px">Velkomstdrink og verandainnvielse</div></div></div>
-      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--red)">19:00</div><div><div class="bold">Tipping stenger!</div><div class="mut" style="font-size:12px">Siste sjanse til å sende inn tips</div></div></div>
+      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--gold)">18:30</div><div><div class="bold">Dørene åpner</div><div class="mut" style="font-size:12px">Velkomstdrink og verandainnvielse 🥂</div></div></div>
+      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--red)">19:00</div><div><div class="bold">Tipping stenger!</div><div class="mut" style="font-size:12px">Siste sjanse – bruk «Tipp»-fanen nå</div></div></div>
       <div class="row" style="gap:12px"><div style="width:42px;font-size:13px">19:30</div><div><div class="bold">Quiz + penaltysparka</div><div class="mut" style="font-size:12px">Bruk «Quiz» og «Spill»-fanene</div></div></div>
       <div class="row" style="gap:12px"><div style="width:42px;font-size:13px">20:45</div><div><div class="bold">Mat serveres</div><div class="mut" style="font-size:12px">Klar til kampen!</div></div></div>
-      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--green)">21:00</div><div><div class="bold" style="color:var(--green)">⚽ KAMPSTART</div><div class="mut" style="font-size:12px">Norge – Frankrike, kl. 21:00 norsk tid</div></div></div>
+      <div class="row" style="gap:12px"><div style="width:42px;font-size:13px;font-weight:700;color:var(--green)">21:00</div><div><div class="bold" style="color:var(--green)">⚽ KAMPSTART!</div><div class="mut" style="font-size:12px">Norge – Frankrike, Gillette Stadium</div></div></div>
     </div>
   </div>
 </div>
 
 </div><!-- /app -->
 
-<!-- NAV -->
 <div id="nav">
   <button class="nb on" onclick="sw('live',this)"><span>⚽</span>Live</button>
   <button class="nb" onclick="sw('tipp',this)"><span>🎯</span>Tipp</button>
@@ -340,124 +322,202 @@ const FIREBASE = 'PASTE_FIREBASE_URL_HERE';
 </div>
 
 <script>
-/* ── CONFIG ── */
-const FB = typeof FIREBASE!=='undefined' ? FIREBASE : '';
-const FB_OK = FB && FB!=='PASTE_FIREBASE_URL_HERE';
+/* ═══════════════════════════════════════════════════════
+   FIREBASE URL: prioritet: 1) URL-param ?db= 2) localStorage 3) hardkodet
+═══════════════════════════════════════════════════════ */
+(function(){
+  var p = new URLSearchParams(window.location.search).get('db');
+  var stored = localStorage.getItem('vm_fb_url_26');
+  var hard = (typeof FIREBASE_HARD !== 'undefined') ? FIREBASE_HARD : '';
+  var url = (p && p.startsWith('https://')) ? p
+           : (stored && stored.startsWith('https://')) ? stored
+           : (hard && hard !== 'PASTE_FIREBASE_URL_HERE') ? hard : '';
+  if(url) localStorage.setItem('vm_fb_url_26', url);
+  window.FB_URL = url;
+  window.FB_OK  = !!url;
+  window.ADMIN  = (typeof ADMIN_NICK !== 'undefined') ? ADMIN_NICK : 'Mia';
+})();
 
-/* ── QUIZ DATA ── */
+/* ═══ QUIZ DATA ═══ */
 const QUIZ=[
   {q:"Hvem er Norges toppscorer gjennom tidene?",opts:["Jørgen Juve","Tore André Flo","Ole Gunnar Solskjær","Erling Braut Haaland"],ans:0},
   {q:"Hva kalles Norges seier over Brasil i VM 1998?",opts:["VM-mirakelet","Mirakelet i Marseille","Det norske underet","Dramaet i Paris"],ans:1},
-  {q:"Hvem er Norges landslagstrener i VM 2026?",opts:["Lars Lagerbäck","Egil 'Drillo' Olsen","Ståle Solbakken","Ole Gunnar Solskjær"],ans:2},
+  {q:"Hvem er Norges landslagstrener i VM 2026?",opts:["Lars Lagerbäck","Egil «Drillo» Olsen","Ståle Solbakken","Ole Gunnar Solskjær"],ans:2},
   {q:"I hvilken gruppe spiller Norge i VM 2026?",opts:["Gruppe A","Gruppe D","Gruppe I","Gruppe L"],ans:2},
   {q:"Hvor spilles Norge–Frankrike?",opts:["MetLife Stadium","Rose Bowl","Gillette Stadium","SoFi Stadium"],ans:2},
   {q:"Hvem er Norges kaptein i VM 2026?",opts:["Sander Berge","Erling Braut Haaland","Martin Ødegaard","Alexander Sørloth"],ans:2},
   {q:"Hvor mange lag deltar i VM 2026?",opts:["32 lag","40 lag","48 lag","64 lag"],ans:2},
-  {q:"Hvilken kanal viser Norge–Frankrike gratis i Norge?",opts:["TV 2","NRK","Discovery+","Viaplay"],ans:1},
+  {q:"Hvilken kanal viser Norge–Frankrike gratis?",opts:["TV 2","NRK","Discovery+","Viaplay"],ans:1},
 ];
 
-/* ── STATE ── */
-let me={nickname:'',avatar:''};
-let gd={H:0,A:0,status:'Ikke startet',scorers:[],lastTotal:-1};
+/* ═══ STATE ═══ */
+let me={nick:'',av:''};
+let gd={H:0,A:0,status:'Ikke startet',scorers:[],prevTotal:-1};
 let allPlayers={}, allTips={}, allScores={};
 let notifOK=false;
-let penRound=1, penShots=0, penGoals=0, penLocked=false;
-let quizQ=0, quizScore=0, quizAnswered=false, quizStarted=false;
-let rxPhase='idle', rxStart=0, rxTimes=[], rxT=null;
-let pollInterval=null;
+/* penalty */
+let penShots=0, penGoals=0, penLocked=false, penCurrentRound=1;
+/* quiz */
+let qIdx=0, qScore=0, qDone=false;
+/* reaction */
+let rxPhase='idle', rxStart=0, rxTimes=[], rxTimer=null;
 
-/* ── FIREBASE HELPERS ── */
-async function fbGet(path=''){
-  if(!FB_OK) return null;
-  try{const r=await fetch(`${FB}/${path}.json`,{signal:AbortSignal.timeout(6000)});return r.ok?r.json():null;}
-  catch(e){return null;}
+/* ═══ FIREBASE ═══ */
+async function fbGet(path){
+  if(!window.FB_OK) return null;
+  try{
+    const r=await fetch(`${window.FB_URL}/${path}.json`,{signal:AbortSignal.timeout(7000)});
+    if(!r.ok) return null;
+    return await r.json();
+  }catch(e){return null;}
 }
 async function fbSet(path,data){
-  if(!FB_OK) return;
-  try{await fetch(`${FB}/${path}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}
-  catch(e){}
+  if(!window.FB_OK) return false;
+  try{
+    const r=await fetch(`${window.FB_URL}/${path}.json`,{
+      method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)
+    });
+    return r.ok;
+  }catch(e){return false;}
 }
 async function fbPatch(path,data){
-  if(!FB_OK) return;
-  try{await fetch(`${FB}/${path}.json`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}
-  catch(e){}
+  if(!window.FB_OK) return false;
+  try{
+    const r=await fetch(`${window.FB_URL}/${path}.json`,{
+      method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)
+    });
+    return r.ok;
+  }catch(e){return false;}
 }
 
-function slug(s){return s.toLowerCase().replace(/[^a-z0-9æøå]/g,'_').slice(0,30);}
+/* ═══ FIREBASE STATUS UI ═══ */
+function setFbStatus(ok, msg){
+  document.getElementById('fb-dot').className='fb-dot '+(ok?'ok':'err');
+  document.getElementById('fb-txt').textContent=msg;
+}
 
-/* ── SETUP ── */
-let setupAvatar='';
-function previewAvatar(inp){
-  const file=inp.files[0]; if(!file) return;
-  compressImage(file,150,150).then(b64=>{
-    setupAvatar=b64;
-    const circle=document.getElementById('setup-avatar-circle');
-    circle.innerHTML=`<img src="${b64}">`;
+async function saveFirebaseUrl(){
+  const url=document.getElementById('fb-url-inp').value.trim();
+  const msg=document.getElementById('fb-test-msg');
+  if(!url.startsWith('https://')){msg.textContent='❌ Ugyldig URL – må starte med https://';return;}
+  msg.textContent='Tester tilkobling...';
+  window.FB_URL=url; window.FB_OK=true;
+  const ok=await fbSet('_ping',{ts:Date.now()});
+  if(ok){
+    localStorage.setItem('vm_fb_url_26',url);
+    msg.textContent='✅ Koblet til! Del lenken: '+location.origin+location.pathname+'?db='+encodeURIComponent(url);
+    setFbStatus(true,'Koblet til');
+    document.getElementById('fb-setup').style.display='none';
+    startPolling();
+  } else {
+    window.FB_URL=''; window.FB_OK=false;
+    msg.textContent='❌ Klarte ikke koble til. Sjekk URL og at test-regler er aktive.';
+    setFbStatus(false,'Feil');
+  }
+}
+
+function slug(s){return (s||'').toLowerCase().replace(/[^a-z0-9æøå]/g,'_').slice(0,25);}
+
+/* ═══ SETUP ═══ */
+let setupAv='';
+function previewAv(inp){
+  const f=inp.files[0]; if(!f) return;
+  compress(f,150,150).then(b64=>{
+    setupAv=b64;
+    document.getElementById('av-circle').innerHTML=`<img src="${b64}" style="width:100%;height:100%;object-fit:cover">`;
   });
 }
 
 function doSetup(){
-  const name=document.getElementById('setup-name').value.trim();
-  const err=document.getElementById('setup-err');
-  if(!name||name.length<2){err.textContent='Skriv minst 2 tegn';return;}
-  me.nickname=name; me.avatar=setupAvatar;
+  const name=document.getElementById('su-name').value.trim();
+  const err=document.getElementById('su-err');
+  if(!name||name.length<2){err.textContent='Skriv minst 2 tegn i kallenavnet';return;}
+  me.nick=name; me.av=setupAv;
   localStorage.setItem('vm_nick_26',name);
-  localStorage.setItem('vm_av_26',setupAvatar);
-  fbPatch(`players/${slug(name)}`,{nickname:name,avatar:setupAvatar,joinedAt:Date.now()});
+  if(setupAv) localStorage.setItem('vm_av_26',setupAv);
   document.getElementById('setup').classList.add('hide');
   document.getElementById('app').style.display='block';
-  document.getElementById('tip-as').textContent=name;
-  document.getElementById('my-avatar-prev').innerHTML=setupAvatar?`<img src="${setupAvatar}">`:'📷';
-  if(!FB_OK) document.getElementById('cfg-notice').style.display='block';
   initApp();
 }
 
-function checkSavedSession(){
+function loadSession(){
   const n=localStorage.getItem('vm_nick_26');
-  if(n){
-    me.nickname=n; me.avatar=localStorage.getItem('vm_av_26')||'';
-    document.getElementById('setup').classList.add('hide');
-    document.getElementById('app').style.display='block';
-    document.getElementById('tip-as').textContent=n;
-    document.getElementById('my-avatar-prev').innerHTML=me.avatar?`<img src="${me.avatar}">`:'📷';
-    if(!FB_OK) document.getElementById('cfg-notice').style.display='block';
-    initApp();
-  }
+  if(!n) return false;
+  me.nick=n; me.av=localStorage.getItem('vm_av_26')||'';
+  document.getElementById('setup').classList.add('hide');
+  document.getElementById('app').style.display='block';
+  return true;
 }
 
-/* ── INIT ── */
-async function initApp(){
-  await pollAll();
-  pollInterval=setInterval(pollAll,15000);
+/* ═══ INIT ═══ */
+function initApp(){
+  document.getElementById('tip-as').textContent=me.nick;
+  document.getElementById('my-av').innerHTML=me.av?`<img src="${me.av}" style="width:100%;height:100%;object-fit:cover">`:'📷';
+
+  /* Admin panel */
+  if(me.nick.toLowerCase()===window.ADMIN.toLowerCase()){
+    document.getElementById('admin-panel').style.display='block';
+    if(!window.FB_OK) document.getElementById('fb-setup').style.display='block';
+  }
+
+  /* Firebase status */
+  if(window.FB_OK){
+    setFbStatus(true,'Koblet til');
+    fbPatch(`players/${slug(me.nick)}`,{nick:me.nick,av:me.av,ts:Date.now()});
+    startPolling();
+  } else {
+    setFbStatus(false,'Ikke koblet til');
+    if(me.nick.toLowerCase()!==window.ADMIN.toLowerCase()){
+      /* Non-admin sees a gentle notice */
+      setFbStatus(false,'Venter på admin');
+    }
+  }
+
   initPenalty();
   renderQuiz();
+  checkQuizState();
 }
 
-/* ── POLL ── */
+let pollTimer=null;
+function startPolling(){
+  if(pollTimer) clearInterval(pollTimer);
+  pollAll();
+  pollTimer=setInterval(pollAll,10000);
+}
+
+/* ═══ POLL ═══ */
 async function pollAll(){
   const data=await fbGet('');
-  if(!data){
-    if(gd.lastTotal<0) gd.lastTotal=0;
-    renderScore(); renderTipLB(); renderTotalLB(); renderPhotos(); return;
+  if(data===null){
+    renderAll();
+    return;
   }
+  /* game */
   if(data.game){
     const d=data.game;
-    const newH=d.H||0, newA=d.A||0, newTot=newH+newA;
-    if(gd.lastTotal>=0 && newTot>gd.lastTotal) goalFlash(newH,newA);
-    gd={H:newH,A:newA,status:d.status||'Ikke startet',scorers:d.scorers||[],lastTotal:newTot};
-  } else if(gd.lastTotal<0) gd.lastTotal=0;
-  allPlayers=data.players||{}; allTips=data.tips||{}; allScores=data.scores||{};
-  renderScore(); renderTipLB(); renderTotalLB(); renderPhotos();
-  checkMyPenaltyState(); checkMyQuizState();
+    const newH=parseInt(d.H)||0, newA=parseInt(d.A)||0, newT=newH+newA;
+    if(gd.prevTotal>=0&&newT>gd.prevTotal) goalFlash(newH,newA);
+    gd={H:newH,A:newA,status:d.status||'Ikke startet',scorers:d.scorers||[],prevTotal:newT};
+  } else if(gd.prevTotal<0) gd.prevTotal=0;
+  if(data.players) allPlayers=data.players;
+  if(data.tips)    allTips=data.tips;
+  if(data.scores)  allScores=data.scores;
+  setFbStatus(true,'Live');
+  renderAll();
+  checkPenState();
+  checkQuizState();
 }
 
-/* ── SCORE ── */
+function renderAll(){
+  renderScore(); renderTipLB(); renderTotalLB(); renderPhotos();
+}
+
+/* ═══ SCORE ═══ */
 function renderScore(){
-  document.getElementById('score-disp').textContent=gd.H+' – '+gd.A;
-  const st=document.getElementById('score-st');
+  document.getElementById('sc-disp').textContent=gd.H+' – '+gd.A;
   const live=['1. omgang','2. omgang'].includes(gd.status);
-  st.innerHTML=(live?`<span class="ldot"></span>`:``)+(gd.status||'Ikke startet');
-  document.getElementById('score-upd').textContent='Oppdatert '+new Date().toLocaleTimeString('nb-NO');
+  document.getElementById('sc-st').innerHTML=(live?'<span class="ldot"></span>':'')+(gd.status||'Ikke startet');
+  document.getElementById('sc-upd').textContent='Oppdatert '+new Date().toLocaleTimeString('nb-NO');
   if(gd.scorers&&gd.scorers.length){
     document.getElementById('scorers-card').style.display='block';
     document.getElementById('scorers-list').innerHTML=gd.scorers.map(s=>`<div style="padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px">${s}</div>`).join('');
@@ -468,13 +528,15 @@ async function pushScore(){
   const h=parseInt(document.getElementById('m-home').value)||0;
   const a=parseInt(document.getElementById('m-away').value)||0;
   const st=document.getElementById('m-status').value;
-  const newTot=h+a;
-  if(newTot>gd.lastTotal&&gd.lastTotal>=0) goalFlash(h,a);
-  gd={H:h,A:a,status:st,scorers:gd.scorers,lastTotal:newTot};
-  await fbSet('game',{H:h,A:a,status:st,scorers:gd.scorers});
-  document.getElementById('push-msg').textContent='✅ Oppdatert for alle!';
+  const tot=h+a;
+  if(tot>gd.prevTotal&&gd.prevTotal>=0) goalFlash(h,a);
+  gd={H:h,A:a,status:st,scorers:gd.scorers,prevTotal:tot};
+  const ok=await fbSet('game',{H:h,A:a,status:st,scorers:gd.scorers});
+  const m=document.getElementById('push-msg');
+  m.textContent=ok?'✅ Oppdatert for alle gjester!':'❌ Klarte ikke lagre – er Firebase koblet til?';
+  m.style.color=ok?'var(--green)':'var(--red)';
   renderScore();
-  setTimeout(()=>document.getElementById('push-msg').textContent='',3000);
+  setTimeout(()=>m.textContent='',4000);
 }
 
 async function addScorer(){
@@ -487,333 +549,311 @@ async function addScorer(){
   renderScore();
 }
 
-/* ── NOTIFICATIONS ── */
+/* ═══ NOTIFICATIONS ═══ */
 async function askNotif(){
   try{
     const p=await Notification.requestPermission();
     if(p==='granted'){
       notifOK=true;
-      document.getElementById('notif-btn').textContent='✓ På';
+      document.getElementById('notif-btn').textContent='✓ Aktivert';
       document.getElementById('notif-btn').style.background='#27500A';
-      document.getElementById('notif-st').textContent='Varsler er aktivert!';
-      new Notification('Mia VM-fest',{body:'Du får varsel ved mål! Heia Norge 🇳🇴'});
-    }else{document.getElementById('notif-st').textContent='Tillatt ikke tilgang i innstillinger';}
-  }catch(e){document.getElementById('notif-st').textContent='Fungerer ikke i denne nettleseren';}
+      document.getElementById('notif-st').textContent='Du får varsel ved mål!';
+      new Notification('Mia VM-fest 🇳🇴',{body:'Målvarsler er på! Heia Norge! ⚽'});
+    }else{
+      document.getElementById('notif-st').textContent='Tillatt ikke tilgang til varsler';
+    }
+  }catch(e){document.getElementById('notif-st').textContent='Støttes ikke i denne nettleseren';}
 }
 
 function goalFlash(h,a){
-  const f=document.getElementById('gflash');
-  const norgeScored=h>gd.H;
-  document.getElementById('gflash-txt').textContent=norgeScored?'🇳🇴 NORGE SCORER!':'🇫🇷 Frankrike scorer...';
-  document.getElementById('gflash-score').textContent='Norge '+h+' – '+a+' Frankrike';
-  f.classList.remove('hide');
+  const norge=h>gd.H;
+  document.getElementById('gf-txt').textContent=norge?'🇳🇴 NORGE SCORER!':'🇫🇷 Frankrike scorer...';
+  document.getElementById('gf-score').textContent='Norge '+h+' – '+a+' Frankrike';
+  document.getElementById('gflash').classList.remove('hide');
   if(notifOK&&Notification.permission==='granted')
-    new Notification('⚽ MÅL!'+(norgeScored?' NORGE!':' Frankrike'),{body:'Norge '+h+' – '+a+' Frankrike'});
-  setTimeout(()=>f.classList.add('hide'),9000);
+    new Notification('⚽ MÅL!'+(norge?' NORGE!':' Frankrike'),{body:'Norge '+h+' – '+a+' Frankrike'});
+  setTimeout(()=>document.getElementById('gflash').classList.add('hide'),9000);
 }
 
-/* ── TIPPING ── */
-function calcTipPts(tip){
+/* ═══ TIPPING ═══ */
+function tipPts(tip){
   const h=gd.H,a=gd.A; let p=0;
   if(tip.h===h&&tip.a===a) p+=5;
   else if((tip.h>tip.a&&h>a)||(tip.h<tip.a&&h<a)||(tip.h===tip.a&&h===a)) p+=2;
   if(tip.h===h) p+=1;
-  const sc=tip.scorer||'';
-  if(sc&&!sc.includes('ingen')&&!sc.toLowerCase().includes('ingen')&&!sc.toLowerCase().includes('0-0')&&!sc.toLowerCase().includes('frankrike')) p+=2;
+  const sc=(tip.scorer||'').toLowerCase();
+  if(sc&&!sc.includes('ingen')&&!sc.includes('0-0')&&!sc.includes('frankrike')) p+=2;
   return p;
 }
 
 async function sendTip(){
-  const deadline=new Date('2026-06-26T21:00:00').getTime();
-  if(Date.now()>deadline){showTipMsg('❌ Tipping er stengt – kampen er i gang!','var(--red)');return;}
+  if(Date.now()>new Date('2026-06-26T21:00:00').getTime()){
+    showTipMsg('❌ Tipping stengt – kampen har startet!','var(--red)');return;
+  }
   const h=document.getElementById('t-home').value;
   const a=document.getElementById('t-away').value;
-  const scorer=document.getElementById('t-scorer').value;
   if(h===''||a===''){showTipMsg('❌ Fyll inn et resultat','var(--red)');return;}
-  const tip={nickname:me.nickname,avatar:me.avatar,h:parseInt(h),a:parseInt(a),scorer,ts:Date.now()};
-  await fbSet(`tips/${slug(me.nickname)}`,tip);
-  allTips[slug(me.nickname)]=tip;
-  showTipMsg('✅ Tips lagret! Lykke til '+me.nickname+'!','var(--green)');
+  const tip={nick:me.nick,av:me.av,h:parseInt(h),a:parseInt(a),scorer:document.getElementById('t-scorer').value,ts:Date.now()};
+  const k=slug(me.nick);
+  const ok=await fbSet(`tips/${k}`,tip);
+  if(ok){allTips[k]=tip;}
+  showTipMsg(ok?'✅ Tips lagret! Lykke til '+me.nick+'!':'⚠️ Lagret lokalt (Firebase ikke tilgjengelig)',ok?'var(--green)':'var(--gold)');
   renderTipLB();
 }
-function showTipMsg(msg,col){const el=document.getElementById('tip-msg');el.textContent=msg;el.style.color=col;setTimeout(()=>el.textContent='',4000);}
+
+function showTipMsg(msg,col){const el=document.getElementById('tip-msg');el.textContent=msg;el.style.color=col;setTimeout(()=>el.textContent='',5000);}
 
 function renderTipLB(){
   const lb=document.getElementById('tip-lb');
   const tips=Object.values(allTips);
-  if(!tips.length){lb.innerHTML='<div class="mut" style="text-align:center;padding:20px 0">Ingen tips ennå – vær den første!</div>';return;}
-  tips.sort((a,b)=>calcTipPts(b)-calcTipPts(a));
-  const medals=['🥇','🥈','🥉'];
-  lb.innerHTML=tips.map((t,i)=>{
-    const av=t.avatar?`<img src="${t.avatar}">`:'👤';
-    return `<div class="trow">
-      <div class="medal">${medals[i]||''}</div>
-      <div class="tavatar">${av}</div>
+  if(!tips.length){lb.innerHTML='<div class="mut" style="text-align:center;padding:20px">Ingen tips ennå – vær den første!</div>';return;}
+  tips.sort((a,b)=>tipPts(b)-tipPts(a));
+  const m=['🥇','🥈','🥉'];
+  lb.innerHTML=tips.map((t,i)=>`
+    <div class="trow">
+      <div class="medal">${m[i]||''}</div>
+      <div class="tav">${t.av?`<img src="${t.av}">`:'👤'}</div>
       <div class="tinfo">
-        <div class="tname2">${t.nickname}</div>
+        <div class="tname2">${t.nick}${t.nick===me.nick?' (deg)':''}</div>
         <div class="tpick">🇳🇴 ${t.h}–${t.a} 🇫🇷${t.scorer?' · ⚽ '+t.scorer:''}</div>
       </div>
-      <div class="tpts">${calcTipPts(t)} p</div>
-    </div>`;
-  }).join('');
+      <div class="tpts">${tipPts(t)} p</div>
+    </div>`).join('');
 }
 
-/* ── TOTAL LEADERBOARD ── */
-function calcTotalPts(nick){
-  const k=slug(nick);
-  const tip=allTips[k]; let tipPts=tip?calcTipPts(tip):0;
-  const sc=allScores[k]||{};
-  const quizPts=sc.quizScore||0;
-  const penBest=sc.penBest||0;
-  const rxBest=sc.rxBest||9999;
-  const rxPts=rxBest<200?3:rxBest<300?2:rxBest<450?1:0;
-  return tipPts+quizPts+penBest+rxPts;
+/* ═══ TOTAL LEADERBOARD ═══ */
+function totalPts(nick){
+  const k=slug(nick), tip=allTips[k], sc=allScores[k]||{};
+  const tp=tip?tipPts(tip):0;
+  const qp=sc.quizScore||0;
+  const pp=sc.penBest||0;
+  const rx=sc.rxBest||9999;
+  const rp=rx<200?3:rx<300?2:rx<450?1:0;
+  return tp+qp+pp+rp;
 }
 
 function renderTotalLB(){
   const lb=document.getElementById('total-lb');
-  const players=[...Object.values(allPlayers)];
-  if(me.nickname&&!players.find(p=>p.nickname===me.nickname)) players.push({nickname:me.nickname,avatar:me.avatar});
-  if(!players.length){lb.innerHTML='<div class="mut" style="text-align:center;padding:16px">Ingen deltakere ennå</div>';return;}
-  players.sort((a,b)=>calcTotalPts(b.nickname)-calcTotalPts(a.nickname));
-  const medals=['🥇','🥈','🥉'];
-  lb.innerHTML=players.map((p,i)=>{
-    const av=p.avatar?`<img src="${p.avatar}">`:'👤';
-    const k=slug(p.nickname);
-    const sc=allScores[k]||{};
-    const tip=allTips[k];
-    const sub=[tip?`🎯${calcTipPts(tip)}p`:'',sc.quizScore!=null?`🧠${sc.quizScore}p`:'',sc.penBest!=null?`⚽${sc.penBest}p`:'',sc.rxBest?`⚡${sc.rxBest<9999?sc.rxBest+'ms':''}`:'' ].filter(Boolean).join(' · ');
+  const all={};
+  Object.values(allPlayers).forEach(p=>{if(p.nick) all[slug(p.nick)]=p;});
+  if(!all[slug(me.nick)]) all[slug(me.nick)]={nick:me.nick,av:me.av};
+  const list=Object.values(all).sort((a,b)=>totalPts(b.nick)-totalPts(a.nick));
+  if(!list.length){lb.innerHTML='<div class="mut" style="text-align:center;padding:20px">Ingen deltakere ennå</div>';return;}
+  const m=['🥇','🥈','🥉'];
+  lb.innerHTML=list.map((p,i)=>{
+    const k=slug(p.nick), sc=allScores[k]||{}, tip=allTips[k];
+    const parts=[tip?`🎯 ${tipPts(tip)}p`:'',sc.quizScore!=null?`🧠 ${sc.quizScore}p`:'',sc.penBest!=null?`⚽ ${sc.penBest}p`:''].filter(Boolean);
     return `<div class="trow">
-      <div class="medal">${medals[i]||''}</div>
-      <div class="tavatar">${av}</div>
+      <div class="medal">${m[i]||''}</div>
+      <div class="tav">${p.av?`<img src="${p.av}">`:'👤'}</div>
       <div class="tinfo">
-        <div class="tname2">${p.nickname}${p.nickname===me.nickname?' (deg)':''}</div>
-        <div class="tpick">${sub||'Ingen poeng ennå'}</div>
+        <div class="tname2">${p.nick}${p.nick===me.nick?' (deg)':''}</div>
+        <div class="tpick">${parts.join(' · ')||'Ingen poeng ennå'}</div>
       </div>
-      <div class="tpts">${calcTotalPts(p.nickname)} p</div>
+      <div class="tpts">${totalPts(p.nick)} p</div>
     </div>`;
   }).join('');
 }
 
-/* ── PHOTO WALL ── */
+/* ═══ PHOTOS ═══ */
 function renderPhotos(){
   const wall=document.getElementById('photo-wall');
-  const players=Object.values(allPlayers).filter(p=>p.avatar);
-  if(!players.length){wall.innerHTML='<div class="mut" style="grid-column:1/-1;text-align:center;padding:20px">Ingen bilder ennå – last opp ditt!</div>';return;}
-  wall.innerHTML=players.map(p=>`
-    <div class="photocell">
-      ${p.avatar?`<img src="${p.avatar}" alt="${p.nickname}">`:'📷'}
-      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);padding:3px;font-size:10px;text-align:center">${p.nickname}</div>
-    </div>`).join('');
-  wall.querySelectorAll('.photocell').forEach(c=>c.style.position='relative');
+  const ps=Object.values(allPlayers).filter(p=>p.av);
+  if(!ps.length){wall.innerHTML='<div class="mut" style="grid-column:1/-1;text-align:center;padding:20px">Ingen bilder ennå!</div>';return;}
+  wall.innerHTML=ps.map(p=>`<div class="photocell">${p.av?`<img src="${p.av}">`:'📷'}<div class="pname">${p.nick}</div></div>`).join('');
 }
 
 async function uploadPhoto(inp){
-  const file=inp.files[0]; if(!file) return;
-  const msg=document.getElementById('photo-msg');
-  msg.textContent='Laster opp...';
+  const f=inp.files[0]; if(!f) return;
+  const m=document.getElementById('ph-msg');
+  m.textContent='Komprimerer og laster opp...'; m.style.color='var(--mut)';
   try{
-    const b64=await compressImage(file,160,160);
-    me.avatar=b64;
+    const b64=await compress(f,160,160);
+    me.av=b64;
     localStorage.setItem('vm_av_26',b64);
-    document.getElementById('my-avatar-prev').innerHTML=`<img src="${b64}">`;
-    await fbPatch(`players/${slug(me.nickname)}`,{avatar:b64,nickname:me.nickname});
-    if(allPlayers[slug(me.nickname)]) allPlayers[slug(me.nickname)].avatar=b64;
-    else allPlayers[slug(me.nickname)]={nickname:me.nickname,avatar:b64};
+    document.getElementById('my-av').innerHTML=`<img src="${b64}" style="width:100%;height:100%;object-fit:cover">`;
+    const k=slug(me.nick);
+    const ok=await fbPatch(`players/${k}`,{av:b64,nick:me.nick,ts:Date.now()});
+    if(ok&&!allPlayers[k]) allPlayers[k]={nick:me.nick,av:b64};
+    else if(allPlayers[k]) allPlayers[k].av=b64;
     renderPhotos(); renderTipLB(); renderTotalLB();
-    msg.textContent='✅ Bilde lastet opp!';
-  }catch(e){msg.textContent='❌ Noe gikk galt. Prøv et mindre bilde.';}
-  setTimeout(()=>msg.textContent='',4000);
+    m.textContent='✅ Bilde lastet opp!'; m.style.color='var(--green)';
+  }catch(e){m.textContent='❌ Feil – prøv et mindre bilde'; m.style.color='var(--red)';}
+  setTimeout(()=>m.textContent='',4000);
 }
 
-function compressImage(file,mw,mh){
+function compress(file,mw,mh){
   return new Promise((res,rej)=>{
     const img=new Image(), url=URL.createObjectURL(file);
     img.onload=()=>{
       URL.revokeObjectURL(url);
-      const ratio=Math.min(mw/img.width,mh/img.height,1);
+      const r=Math.min(mw/img.width,mh/img.height,1);
       const c=document.createElement('canvas');
-      c.width=Math.round(img.width*ratio); c.height=Math.round(img.height*ratio);
+      c.width=Math.round(img.width*r); c.height=Math.round(img.height*r);
       c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-      res(c.toDataURL('image/jpeg',0.78));
+      res(c.toDataURL('image/jpeg',.78));
     };
     img.onerror=rej; img.src=url;
   });
 }
 
-/* ── PENALTY ── */
-let maxRounds=3;
-function checkMyPenaltyState(){
-  const sc=allScores[slug(me.nickname)]||{};
-  const plays=sc.penRounds||0;
-  updatePenaltyLimitMsg(plays);
-  if(plays>=maxRounds&&penShots===0) lockPenalty();
-}
-function updatePenaltyLimitMsg(plays){
-  const left=maxRounds-Math.min(plays,maxRounds);
-  document.getElementById('pen-limit-msg').textContent=plays<maxRounds?`Runde ${plays+1} av ${maxRounds} – ${left} runde${left!==1?'r':''} igjen`:'Du har brukt alle rundene dine!';
-}
-function lockPenalty(){
-  penLocked=true;
-  document.getElementById('gc0').onclick=null;
-  document.getElementById('gc1').onclick=null;
-  document.getElementById('gc2').onclick=null;
-  document.getElementById('pen-msg').textContent='Alle runder brukt – se rekorden din!';
+/* ═══ PENALTY ═══ */
+const MAX_ROUNDS=3;
+function initPenalty(){penShots=0;penGoals=0;penCurrentRound=1;renderKicks();checkPenState();}
+
+function checkPenState(){
+  const sc=allScores[slug(me.nick)]||{};
+  const rounds=sc.penRounds||0;
+  const best=sc.penBest;
+  if(best!=null) document.getElementById('pen-rec').textContent=best+'/5';
+  const left=MAX_ROUNDS-rounds;
+  document.getElementById('pen-limit').textContent=rounds>=MAX_ROUNDS?
+    'Du har brukt alle '+MAX_ROUNDS+' rundene dine.':'Runde '+penCurrentRound+' av '+MAX_ROUNDS+' – '+left+' runde'+(left!==1?'r':'')+' igjen';
+  if(rounds>=MAX_ROUNDS&&!penLocked) lockPen();
+  document.getElementById('pen-round').textContent=Math.min(penCurrentRound,MAX_ROUNDS)+'/'+MAX_ROUNDS;
 }
 
-function initPenalty(){penShots=0;penGoals=0;renderKicks();checkMyPenaltyState();}
+function lockPen(){
+  penLocked=true;
+  ['gc0','gc1','gc2'].forEach(id=>{const el=document.getElementById(id);if(el)el.onclick=null;});
+  document.getElementById('pen-msg').textContent='Alle runder fullført! 🏆';
+}
 
 function renderKicks(){
-  document.getElementById('kick-dots').innerHTML=[0,1,2,3,4].map(i=>{
-    let c='kick';
-    if(i<penShots) c+=' '+(penGoals>i?'goal':'saved'); // simple track
-    if(i===penShots&&penShots<5) c+=' cur';
-    return `<div class="${c}" id="kd${i}"></div>`;
-  }).join('');
+  document.getElementById('kick-dots').innerHTML=[0,1,2,3,4].map(i=>
+    `<div class="kick${i<penShots?(penGoals>i?' goal':' saved'):''}${i===penShots&&penShots<5?' cur':''}"></div>`).join('');
 }
 
 function shoot(cell){
-  if(penLocked) return;
-  const k=Math.floor(Math.random()*3);
-  const goal=cell!==k;
-  [0,1,2].forEach(j=>{
-    const el=document.getElementById('gc'+j);
-    el.classList.remove('keeper','scored','missed');
-    el.onclick=null;
-  });
+  if(penLocked||penShots>=5) return;
+  const k=Math.floor(Math.random()*3), goal=cell!==k;
+  ['gc0','gc1','gc2'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('keeper','scored','missed');el.onclick=null;});
   document.getElementById('gc'+k).classList.add('keeper');
   document.getElementById('gc'+cell).classList.add(goal?'scored':'missed');
   if(goal) penGoals++;
-  const kd=document.getElementById('kd'+penShots);
-  if(kd){kd.className='kick '+(goal?'goal':'saved');}
+  const dots=document.getElementById('kick-dots').children;
+  if(dots[penShots]) dots[penShots].className='kick '+(goal?'goal':'saved');
   penShots++;
   document.getElementById('pen-goals').textContent=penGoals;
   document.getElementById('pen-msg').textContent=goal?'⚽ MÅL! 🎉':'🧤 Reddet!';
   if(penShots>=5){
-    const msgs=['Øv litt mer...','Ikke verst!','Bra innsats!','Imponerende!','Perfekt – Haaland-nivå! 🐐'];
+    const msgs=['Øv deg litt mer...','Ikke verst!','Bra innsats!','Imponerende!','Perfekt – Haaland-nivå! 🐐'];
     document.getElementById('pen-res').textContent=msgs[penGoals]+' ('+penGoals+'/5)';
     document.getElementById('pen-next').style.display='block';
   } else {
     setTimeout(()=>{
-      [0,1,2].forEach(j=>{const el=document.getElementById('gc'+j);el.classList.remove('keeper','scored','missed');el.onclick=()=>shoot(j);});
+      ['gc0','gc1','gc2'].forEach((id,j)=>{const el=document.getElementById(id);el.classList.remove('keeper','scored','missed');el.onclick=()=>shoot(j);});
       document.getElementById('pen-msg').textContent='Skyting '+(penShots+1)+'/5 – velg hjørne!';
     },900);
   }
 }
 
 async function nextRound(){
-  const sc=allScores[slug(me.nickname)]||{};
-  const prevRounds=sc.penRounds||0;
-  const prevBest=sc.penBest||0;
-  const newBest=Math.max(prevBest,penGoals);
-  const newRounds=prevRounds+1;
-  await fbPatch(`scores/${slug(me.nickname)}`,{penBest:newBest,penRounds:newRounds});
-  allScores[slug(me.nickname)]={...(allScores[slug(me.nickname)]||{}),penBest:newBest,penRounds:newRounds};
-  document.getElementById('pen-record').textContent=newBest+'/5';
-  document.getElementById('pen-round').textContent=(newRounds+1)+'/'+maxRounds;
-  updatePenaltyLimitMsg(newRounds);
-  if(newRounds>=maxRounds){
-    document.getElementById('pen-next').style.display='none';
-    document.getElementById('pen-done-btn').style.display='block';
-    document.getElementById('pen-res').textContent='Alle runder fullfort! Beste: '+newBest+'/5 ⭐';
-    lockPenalty(); return;
-  }
-  penShots=0; penGoals=0; renderKicks();
-  [0,1,2].forEach(j=>{const el=document.getElementById('gc'+j);el.classList.remove('keeper','scored','missed');el.onclick=()=>shoot(j);});
-  document.getElementById('pen-msg').textContent='Runde '+(newRounds+1)+' – Velg hjørne!';
+  const k=slug(me.nick), sc=allScores[k]||{};
+  const prevR=sc.penRounds||0, prevB=sc.penBest||0;
+  const newB=Math.max(prevB,penGoals), newR=prevR+1;
+  await fbPatch(`scores/${k}`,{penBest:newB,penRounds:newR});
+  allScores[k]={...sc,penBest:newB,penRounds:newR};
+  document.getElementById('pen-rec').textContent=newB+'/5';
   document.getElementById('pen-next').style.display='none';
   document.getElementById('pen-res').textContent='';
+  penCurrentRound=newR+1;
+  checkPenState();
+  if(newR>=MAX_ROUNDS){lockPen();return;}
+  penShots=0; penGoals=0; renderKicks();
+  ['gc0','gc1','gc2'].forEach((id,j)=>{const el=document.getElementById(id);el.classList.remove('keeper','scored','missed');el.onclick=()=>shoot(j);});
+  document.getElementById('pen-goals').textContent='0';
+  document.getElementById('pen-msg').textContent='Runde '+penCurrentRound+'/'+MAX_ROUNDS+' – Velg hjørne!';
   renderTotalLB();
 }
 
-function penAllDone(){document.getElementById('pen-done-btn').style.display='none';}
-
-/* ── REACTION ── */
+/* ═══ REACTION ═══ */
 function rxClick(){
   const box=document.getElementById('rxbox'), msg=document.getElementById('rx-msg');
   if(rxPhase==='idle'){
-    rxPhase='wait'; box.textContent='🟡'; msg.textContent='Venter...';
-    rxT=setTimeout(()=>{rxPhase='go';rxStart=Date.now();box.textContent='🟥';msg.textContent='TRYKK NÅ!';},1500+Math.random()*3000);
+    rxPhase='wait'; box.textContent='🟡'; msg.textContent='Venter på dommeren...';
+    rxTimer=setTimeout(()=>{rxPhase='go';rxStart=Date.now();box.textContent='🟥';msg.textContent='TRYKK NÅ!';},1500+Math.random()*3000);
   } else if(rxPhase==='wait'){
-    clearTimeout(rxT); rxPhase='idle'; box.textContent='🟢'; msg.textContent='For tidlig! Prøv igjen';
+    clearTimeout(rxTimer); rxPhase='idle'; box.textContent='🟢'; msg.textContent='For tidlig! Prøv igjen';
   } else if(rxPhase==='go'){
-    const t=Date.now()-rxStart; rxPhase='idle'; box.textContent='🟢';
+    const t=Date.now()-rxStart; rxPhase='idle'; box.textContent='🟢'; msg.textContent='Klikk for å starte';
     rxTimes.push(t); if(rxTimes.length>5) rxTimes.shift();
     const best=Math.min(...rxTimes);
-    const grade=t<200?'Lynrask! ⚡':t<300?'Veldig bra!':t<400?'Bra!':t<500?'OK':'Litt treig 😅';
-    msg.textContent='Klikk for å starte';
-    document.getElementById('rx-res').innerHTML=`<div class="card" style="margin:0;padding:12px"><div style="font-size:22px;font-weight:800;color:${t<300?'var(--green)':'var(--gold)'}">${t} ms – ${grade}</div><div class="mut" style="font-size:12px">Best: ${best} ms</div></div>`;
-    fbPatch(`scores/${slug(me.nickname)}`,{rxBest:Math.min(best,(allScores[slug(me.nickname)]||{}).rxBest||9999)});
+    const grade=t<200?'Lynrask! ⚡':t<300?'Veldig bra! 🎯':t<400?'Bra!':t<500?'OK 👍':'Treig 😅';
+    document.getElementById('rx-res').innerHTML=`<div class="card" style="margin:0;padding:12px"><div style="font-size:22px;font-weight:800;color:${t<300?'var(--green)':'var(--gold)'}">${t} ms – ${grade}</div><div class="mut" style="font-size:12px">Beste: ${best} ms</div></div>`;
+    const k=slug(me.nick), prev=(allScores[k]||{}).rxBest||9999;
+    if(best<prev){fbPatch(`scores/${k}`,{rxBest:best});if(!allScores[k])allScores[k]={};allScores[k].rxBest=best;}
     renderTotalLB();
   }
 }
 
-/* ── QUIZ (FIXED) ── */
-function checkMyQuizState(){
-  const sc=allScores[slug(me.nickname)]||{};
-  if(sc.quizDone&&!quizStarted){quizScore=sc.quizScore||0;quizQ=QUIZ.length;quizStarted=true;renderQuiz();}
+/* ═══ QUIZ (FIXED) ═══ */
+function checkQuizState(){
+  const sc=allScores[slug(me.nick)]||{};
+  if(sc.quizDone&&!qDone){qDone=true;qScore=sc.quizScore||0;qIdx=QUIZ.length;renderQuiz();}
 }
 
 function renderQuiz(){
   const w=document.getElementById('quiz-wrap');
-  if(quizQ>=QUIZ.length){
-    const pct=Math.round(quizScore/QUIZ.length*100);
-    const msg=pct>=88?'🏆 Fotballegend!':pct>=62?'⭐ Solid VM-kunnskap!':pct>=38?'⚽ Ikke verst!':'📚 Øv deg til neste kamp!';
+  if(qIdx>=QUIZ.length){
+    const pct=Math.round(qScore/QUIZ.length*100);
+    const msg=pct>=88?'🏆 Fotballegend!':pct>=62?'⭐ Solid kunnskap!':pct>=38?'⚽ Ikke verst!':'📚 Øv deg!';
     w.innerHTML=`<div style="text-align:center;padding:16px">
       <div style="font-size:52px">${pct>=88?'🏆':pct>=62?'⭐':'⚽'}</div>
       <h2 style="margin:10px 0 4px">${msg}</h2>
-      <div style="font-size:36px;font-weight:900;color:var(--gold)">${quizScore}/${QUIZ.length}</div>
-      <div class="mut" style="margin:6px 0 16px">${pct}% riktig</div>
-      ${!quizStarted?'<button class="btn" onclick="resetQuiz()">Ta quizen på nytt</button>':'<p class="mut" style="font-size:13px">Du har allerede fullført quizen</p>'}
+      <div style="font-size:36px;font-weight:900;color:var(--gold)">${qScore}/${QUIZ.length}</div>
+      <div class="mut" style="margin:6px 0 16px">${pct}% riktige svar</div>
+      ${!qDone?'<button class="btn" onclick="restartQuiz()">Ta quizen igjen</button>':'<p class="mut" style="font-size:13px">Quiz fullført – se poengtavlen i Topp-fanen</p>'}
     </div>`;
     return;
   }
-  const q=QUIZ[quizQ];
+  const q=QUIZ[qIdx];
   w.innerHTML=`
-    <div class="lbl">${quizQ+1} av ${QUIZ.length}</div>
-    <div style="background:var(--surf);border-radius:4px;height:4px;margin-bottom:12px">
-      <div style="background:var(--blue);height:4px;border-radius:4px;transition:width .3s;width:${Math.round(quizQ/QUIZ.length*100)}%"></div>
+    <div class="lbl">${qIdx+1} av ${QUIZ.length}</div>
+    <div style="background:var(--surf);height:4px;border-radius:2px;margin-bottom:12px">
+      <div style="background:var(--blue);height:4px;border-radius:2px;width:${Math.round(qIdx/QUIZ.length*100)}%;transition:width .3s"></div>
     </div>
-    <h3 style="margin-bottom:14px;line-height:1.5;font-size:16px">${q.q}</h3>
-    <div id="qopts">
-      ${q.opts.map((o,i)=>`<div class="qopt" id="qo${i}" onclick="answerQuiz(${i})">${o}</div>`).join('')}
+    <h3 style="margin-bottom:14px;line-height:1.5;font-size:15px">${q.q}</h3>
+    <div id="q-opts">
+      ${q.opts.map((o,i)=>`<div class="qopt" id="qo${i}" onclick="answerQ(${i})">${o}</div>`).join('')}
     </div>
-    <div id="qfb" style="display:none;margin-top:12px">
-      <div id="qfb-text" style="font-size:14px;font-weight:600;margin-bottom:10px"></div>
-      <button class="btn" onclick="nextQuestion()">Neste →</button>
+    <div id="q-fb" style="display:none;margin-top:12px">
+      <div id="q-fb-txt" style="font-size:14px;font-weight:600;margin-bottom:10px"></div>
+      <button class="btn" onclick="nextQ()">Neste →</button>
     </div>`;
 }
 
-function answerQuiz(i){
-  if(document.getElementById('qfb').style.display==='block') return;
-  const q=QUIZ[quizQ], correct=i===q.ans;
+function answerQ(i){
+  if(document.getElementById('q-fb').style.display==='block') return;
+  const q=QUIZ[qIdx], ok=i===q.ans;
+  /* FIXED: only mark selected & correct – all others stay untouched */
   document.querySelectorAll('.qopt').forEach((el,j)=>{
     el.classList.add('done');
-    el.onclick=null;
-    if(j===q.ans) el.classList.add('correct');
-    else if(j===i&&!correct) el.classList.add('wrong');
+    if(j===q.ans)    el.classList.add('correct');
+    else if(j===i)   el.classList.add('wrong');
+    /* other options: no extra class, just disabled */
   });
-  if(correct) quizScore++;
-  const fb=document.getElementById('qfb-text');
-  fb.textContent=correct?'✅ Riktig!':'❌ Feil – riktig svar er markert ovenfor';
-  fb.style.color=correct?'var(--green)':'var(--red)';
-  document.getElementById('qfb').style.display='block';
+  if(ok) qScore++;
+  const fb=document.getElementById('q-fb-txt');
+  fb.textContent=ok?'✅ Riktig! Bra jobba!':'❌ Feil – riktig svar er uthevet';
+  fb.style.color=ok?'var(--green)':'var(--red)';
+  document.getElementById('q-fb').style.display='block';
 }
 
-async function nextQuestion(){
-  quizQ++;
-  if(quizQ>=QUIZ.length){
-    quizStarted=true;
-    await fbPatch(`scores/${slug(me.nickname)}`,{quizScore,quizDone:true});
-    allScores[slug(me.nickname)]={...(allScores[slug(me.nickname)]||{}),quizScore,quizDone:true};
+async function nextQ(){
+  qIdx++;
+  if(qIdx>=QUIZ.length){
+    qDone=true;
+    const ok=await fbPatch(`scores/${slug(me.nick)}`,{quizScore:qScore,quizDone:true});
+    if(ok&&!allScores[slug(me.nick)]) allScores[slug(me.nick)]={};
+    if(allScores[slug(me.nick)]) Object.assign(allScores[slug(me.nick)],{quizScore:qScore,quizDone:true});
     renderTotalLB();
   }
   renderQuiz();
 }
+function restartQuiz(){qIdx=0;qScore=0;qDone=false;renderQuiz();}
 
-function resetQuiz(){quizQ=0;quizScore=0;quizStarted=false;quizAnswered=false;renderQuiz();}
-
-/* ── TAB SWITCH ── */
+/* ═══ TAB ═══ */
 function sw(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -821,8 +861,8 @@ function sw(id,btn){
   btn.classList.add('on');
 }
 
-/* ── INIT ── */
-checkSavedSession();
+/* ═══ START ═══ */
+if(!loadSession()) {} /* setup overlay stays visible */
 </script>
 </body>
 </html>
