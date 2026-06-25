@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///C:/Users/vg434/Downloads/mia-vm-party_1.html -->
+<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mia's VM-fest 🎂⚽</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --red:#EF2B2D;--blue:#003087;--gold:#FFD700;
+  --bg:#0d0d1a;--surface:#1a1a2e;--card:#242438;--border:#2d2d45;
+  --text:#f0f0ff;--muted:#8888aa;--accent:#EF2B2D;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;max-width:430px;margin:0 auto;padding-bottom:80px}
+h1{font-size:22px;font-weight:700}
+h2{font-size:17px;font-weight:600}
+h3{font-size:15px;font-weight:600}
+
+/* Nav */
+#nav{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--border);display:flex;z-index:100}
+.nav-btn{flex:1;padding:10px 4px 8px;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;transition:color .2s}
+.nav-btn.active{color:var(--red)}
+.nav-btn span{font-size:22px}
+
+/* Cards */
+.card{background:var(--card);border-radius:14px;padding:16px;margin:0 16px 12px;border:1px solid var(--border)}
+.card-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+
+/* Score board */
+#scoreboard{background:var(--blue);border-radius:16px;padding:20px 16px;margin:16px;text-align:center}
+.teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.team-name{font-size:14px;font-weight:600;flex:1}
+.team-flag{font-size:36px;display:block;margin-bottom:4px}
+.score-nums{font-size:52px;font-weight:800;letter-spacing:4px;padding:0 12px;color:#fff}
+.score-status{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4ade80;margin-right:6px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Tabs content */
+.tab{display:none}
+.tab.active{display:block}
+
+/* Header bar */
+.top-bar{background:var(--surface);padding:14px 16px 12px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.top-bar h1{font-size:18px}
+.top-bar p{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Inputs */
+input,select{background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:10px 12px;font-size:15px;width:100%;outline:none}
+input:focus,select:focus{border-color:var(--red)}
+select option{background:var(--surface)}
+
+/* Buttons */
+.btn{background:var(--red);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:15px;font-weight:600;cursor:pointer;width:100%;transition:opacity .2s}
+.btn:active{opacity:.8}
+.btn-outline{background:none;border:1px solid var(--border);color:var(--text)}
+.btn-sm{padding:7px 14px;font-size:13px;border-radius:8px;width:auto}
+.btn-blue{background:var(--blue)}
+
+/* Tipp list */
+.tipp-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.tipp-row:last-child{border-bottom:none}
+.tipp-row .rank{font-size:18px;font-weight:800;width:32px;color:var(--gold)}
+.tipp-info{flex:1;padding:0 10px}
+.tipp-name{font-size:14px;font-weight:600}
+.tipp-pick{font-size:12px;color:var(--muted);margin-top:2px}
+.tipp-pts{font-size:18px;font-weight:800;color:var(--gold)}
+
+/* Penalty game */
+.pitch{background:#2d5a1b;border-radius:12px;padding:16px;margin-bottom:12px;text-align:center;border:2px solid #3d7a2b}
+.goal-post{width:120px;height:70px;border:3px solid white;border-bottom:none;margin:0 auto 12px;display:grid;grid-template-columns:repeat(3,1fr);cursor:pointer;border-radius:4px 4px 0 0}
+.goal-cell{border-right:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:24px;transition:background .15s}
+.goal-cell:last-child{border-right:none}
+.goal-cell:hover{background:rgba(255,255,255,.15)}
+.goal-cell.keeper{background:rgba(255,140,0,.5)}
+.goal-cell.scored{background:rgba(74,222,128,.4)}
+.goal-cell.missed{background:rgba(239,43,45,.4)}
+.penalty-kicks{display:flex;justify-content:center;gap:8px;margin-top:8px}
+.kick-dot{width:16px;height:16px;border-radius:50%;background:var(--border)}
+.kick-dot.goal{background:#4ade80}
+.kick-dot.saved{background:var(--red)}
+.kick-dot.current{background:var(--gold)}
+
+/* Quiz */
+.quiz-opt{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:border-color .15s}
+.quiz-opt:hover{border-color:var(--muted)}
+.quiz-opt.correct{border-color:#4ade80;background:rgba(74,222,128,.1);color:#4ade80}
+.quiz-opt.wrong{border-color:var(--red);background:rgba(239,43,45,.1)}
+.quiz-opt.reveal{border-color:#4ade80;background:rgba(74,222,128,.08);color:#4ade80}
+
+/* Spinner */
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Goal flash */
+.goal-flash{position:fixed;inset:0;background:rgba(239,43,45,.85);z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
+.goal-flash h1{font-size:56px;font-weight:900}
+.goal-flash p{font-size:24px;margin-top:8px}
+.goal-flash.hidden{display:none}
+
+/* Notification banner */
+.notif-banner{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0 16px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+/* Rows */
+.row{display:flex;gap:8px;align-items:center}
+.row-between{display:flex;justify-content:space-between;align-items:center}
+.mt8{margin-top:8px}
+.mt12{margin-top:12px}
+.mt16{margin-top:16px}
+.bold{font-weight:600}
+.muted{color:var(--muted);font-size:13px}
+.success{color:#4ade80}
+.error-text{color:var(--red);font-size:13px}
+
+/* Confetti area */
+.confetti-wrap{text-align:center;padding:16px 0;font-size:28px;letter-spacing:4px}
+</style>
+</head>
+<body>
+
+<div id="goal-flash" class="goal-flash hidden">
+  <div style="font-size:64px">⚽</div>
+  <h1>MÅL!</h1>
+  <p id="goal-flash-text">Norge scorer!</p>
+  <p style="font-size:16px;margin-top:12px;color:rgba(255,255,255,.7)" id="goal-flash-score"></p>
+  <button class="btn btn-outline mt16" style="color:#fff;border-color:rgba(255,255,255,.5)" onclick="document.getElementById(&#39;goal-flash&#39;).classList.add(&#39;hidden&#39;)">Lukk</button>
+</div>
+
+<!-- NAV -->
+<div id="nav">
+  <button class="nav-btn active" onclick="showTab(&#39;live&#39;,this)"><span>⚽</span>Live</button>
+  <button class="nav-btn" onclick="showTab(&#39;tipp&#39;,this)"><span>🎯</span>Tipp</button>
+  <button class="nav-btn" onclick="showTab(&#39;spill&#39;,this)"><span>🎮</span>Spill</button>
+  <button class="nav-btn" onclick="showTab(&#39;quiz&#39;,this)"><span>🧠</span>Quiz</button>
+  <button class="nav-btn" onclick="showTab(&#39;fest&#39;,this)"><span>🎂</span>Fest</button>
+</div>
+
+<!-- ══════════ LIVE TAB ══════════ -->
+<div id="tab-live" class="tab active">
+  <div class="top-bar">
+    <h1>🇳🇴 Norge – Frankrike 🇫🇷</h1>
+    <p>Fredag 26. juni · kl. 21:00 · Gillette Stadium, Boston</p>
+  </div>
+
+  <div id="scoreboard">
+    <div class="teams">
+      <div class="team-name" style="text-align:left">
+        <span class="team-flag">🇳🇴</span>
+        Norge
+      </div>
+      <div class="score-nums" id="score-display">0 – 0</div>
+      <div class="team-name" style="text-align:right">
+        <span class="team-flag">🇫🇷</span>
+        Frankrike
+      </div>
+    </div>
+    <div class="score-status" id="score-status">
+      <span class="spinner" id="fetch-spinner" style="display: none;"></span>
+      <span id="status-text">Live · oppdateres hvert 30s</span>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:rgba(255,255,255,.5)" id="last-updated">Sist oppdatert 21:37:29</div>
+  </div>
+
+  <div class="notif-banner" id="notif-section">
+    <div>
+      <div class="bold" style="font-size:14px">🔔 Målvarsler</div>
+      <div class="muted" id="notif-status-text">Aktiver for å få varsel ved mål</div>
+    </div>
+    <button class="btn btn-sm" id="notif-btn" onclick="requestNotif()">Aktiver</button>
+  </div>
+
+  <div class="card" id="scorers-card" style="display:none">
+    <div class="card-title">Målscorere</div>
+    <div id="scorers-list"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Oppdater score manuelt (admin)</div>
+    <p class="muted" style="margin-bottom:12px">Hvis livescore ikke fungerer, kan du oppdatere manuelt her</p>
+    <div class="row" style="gap:8px;margin-bottom:8px">
+      <div style="flex:1">
+        <label class="muted" style="font-size:12px;display:block;margin-bottom:4px">Norge</label>
+        <input type="number" id="manual-home" min="0" max="20" value="0" style="text-align:center;font-size:20px;font-weight:700">
+      </div>
+      <div style="padding-top:24px;font-size:18px;color:var(--muted)">–</div>
+      <div style="flex:1">
+        <label class="muted" style="font-size:12px;display:block;margin-bottom:4px">Frankrike</label>
+        <input type="number" id="manual-away" min="0" max="20" value="0" style="text-align:center;font-size:20px;font-weight:700">
+      </div>
+    </div>
+    <div class="row" style="gap:8px">
+      <select id="manual-status" style="flex:1">
+        <option value="Ikke startet">Ikke startet (18:30–21:00)</option>
+        <option value="1. omgang">1. omgang</option>
+        <option value="Pause">Pause</option>
+        <option value="2. omgang">2. omgang</option>
+        <option value="Slutt">Sluttsignal!</option>
+      </select>
+      <button class="btn btn-sm" onclick="setManualScore()">Sett</button>
+    </div>
+    <div class="mt8">
+      <label class="muted" style="font-size:12px;display:block;margin-bottom:4px">Legg til målscorer</label>
+      <div class="row" style="gap:8px">
+        <select id="scorer-team" style="flex:1">
+          <option value="🇳🇴 Norge">🇳🇴 Norge</option>
+          <option value="🇫🇷 Frankrike">🇫🇷 Frankrike</option>
+        </select>
+        <input id="scorer-name" placeholder="Navn + min." style="flex:2">
+        <button class="btn btn-sm btn-blue" onclick="addScorer()">+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TIPP TAB ══════════ -->
+<div id="tab-tipp" class="tab">
+  <div class="top-bar">
+    <h1>🎯 Tippelaget</h1>
+    <p>Gjett kampresultatet og første norske scorer</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Send inn ditt tips</div>
+    <input id="tip-name" placeholder="Navnet ditt" style="margin-bottom:8px">
+    <label class="muted" style="font-size:12px;display:block;margin:8px 0 4px">Sluttresultat</label>
+    <div class="row" style="gap:8px;margin-bottom:8px">
+      <div style="flex:1;text-align:center">
+        <div class="muted" style="font-size:12px;margin-bottom:4px">🇳🇴 Norge</div>
+        <input type="number" id="tip-home" min="0" max="15" placeholder="0" style="text-align:center;font-size:24px;font-weight:700">
+      </div>
+      <div style="padding-top:20px;font-size:22px;color:var(--muted)">–</div>
+      <div style="flex:1;text-align:center">
+        <div class="muted" style="font-size:12px;margin-bottom:4px">🇫🇷 Frankrike</div>
+        <input type="number" id="tip-away" min="0" max="15" placeholder="0" style="text-align:center;font-size:24px;font-weight:700">
+      </div>
+    </div>
+    <label class="muted" style="font-size:12px;display:block;margin:8px 0 4px">Første norske scorer</label>
+    <select id="tip-scorer" style="margin-bottom:12px">
+      <option value="">Velg spiller...</option>
+      <option>Erling Braut Haaland</option>
+      <option>Martin Ødegaard</option>
+      <option>Alexander Sørloth</option>
+      <option>Antonio Nusa</option>
+      <option>Sander Berge</option>
+      <option>Leo Østigård</option>
+      <option>Mathias Normann</option>
+      <option>Ole Kristian Selnæs</option>
+      <option>Frankrike scorer (0-0)</option>
+      <option>Ingen mål – 0-0</option>
+    </select>
+    <button class="btn" onclick="submitTip()">Send inn tips</button>
+    <div id="tip-msg" class="mt8" style="text-align:center;font-size:13px"></div>
+  </div>
+
+  <div class="card">
+    <div class="row-between" style="margin-bottom:12px">
+      <div class="card-title" style="margin:0">Poengtavle</div>
+      <div class="muted" style="font-size:12px">Oppdateres ved slutt</div>
+    </div>
+    <div id="leaderboard"><div class="muted" style="text-align:center;padding:20px 0;font-size:14px">Ingen tips ennå – vær den første!</div></div>
+  </div>
+
+  <div class="card" style="border-color:#333355">
+    <div class="card-title">Poengutdeling</div>
+    <div class="muted" style="font-size:13px;line-height:1.7">
+      🏆 Eksakt resultat: <strong style="color:var(--gold)">5 poeng</strong><br>
+      ✅ Riktig vinner/uavgjort: <strong style="color:var(--gold)">2 poeng</strong><br>
+      ⚽ Riktig norsk scorer: <strong style="color:var(--gold)">2 poeng</strong><br>
+      🎯 Eksakt antall norgemål: <strong style="color:var(--gold)">1 poeng</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SPILL TAB ══════════ -->
+<div id="tab-spill" class="tab">
+  <div class="top-bar">
+    <h1>🎮 Penaltysparka</h1>
+    <p>5 straffespark – klarer du å score?</p>
+  </div>
+
+  <div class="card" id="penalty-game">
+    <div class="pitch">
+      <div style="font-size:14px;color:rgba(255,255,255,.7);margin-bottom:10px" id="penalty-msg">Velg hvor du skyter!</div>
+      <div id="goal-grid" class="goal-post">
+        <div class="goal-cell" onclick="shoot(0)" id="cell-0" style="pointer-events: auto;"></div>
+        <div class="goal-cell" onclick="shoot(1)" id="cell-1" style="pointer-events: auto;"></div>
+        <div class="goal-cell" onclick="shoot(2)" id="cell-2" style="pointer-events: auto;"></div>
+      </div>
+      <div style="width:130px;height:4px;background:rgba(255,255,255,.3);margin:0 auto;border-radius:2px"></div>
+      <div class="penalty-kicks mt12" id="kick-indicators"><div class="kick-dot current" id="kick-0"></div><div class="kick-dot" id="kick-1"></div><div class="kick-dot" id="kick-2"></div><div class="kick-dot" id="kick-3"></div><div class="kick-dot" id="kick-4"></div></div>
+    </div>
+    <div class="row-between" style="margin-bottom:8px">
+      <div style="text-align:center;flex:1">
+        <div class="muted" style="font-size:12px">Mål</div>
+        <div style="font-size:28px;font-weight:800" id="penalty-goals">0</div>
+      </div>
+      <div style="text-align:center;flex:1">
+        <div class="muted" style="font-size:12px">Reddet</div>
+        <div style="font-size:28px;font-weight:800;color:var(--red)" id="penalty-saves">0</div>
+      </div>
+      <div style="text-align:center;flex:1">
+        <div class="muted" style="font-size:12px">Rekord</div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="penalty-record">0</div>
+      </div>
+    </div>
+    <button class="btn" id="penalty-reset" onclick="resetPenalty()" style="display:none">Spill igjen</button>
+    <div id="penalty-result" class="muted" style="text-align:center;margin-top:8px;font-size:14px"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Reaksjonstest</div>
+    <p class="muted" style="font-size:13px;margin-bottom:12px">Trykk så fort du kan når dommeren viser rødt kort!</p>
+    <div id="refbox" style="background:var(--surface);border-radius:10px;padding:30px;text-align:center;cursor:pointer;font-size:48px;border:1px solid var(--border)" onclick="reactionClick()">
+      🟢
+    </div>
+    <div class="mt8 muted" style="text-align:center;font-size:13px" id="reaction-msg">Klikk for å starte</div>
+    <div id="reaction-results" style="margin-top:8px"></div>
+  </div>
+</div>
+
+<!-- ══════════ QUIZ TAB ══════════ -->
+<div id="tab-quiz" class="tab">
+  <div class="top-bar">
+    <h1>🧠 VM-quiz</h1>
+    <p>Test VM-kunnskapen din!</p>
+  </div>
+  <div class="card" id="quiz-card">
+    <div class="card-title">1 av 8</div>
+    <div style="background:var(--surface);border-radius:6px;height:4px;margin-bottom:14px">
+      <div style="background:var(--blue);height:4px;border-radius:6px;width:0%"></div>
+    </div>
+    <h3 style="margin-bottom:14px;line-height:1.5">Hvem er Norges toppscorer i VM-historien?</h3>
+    <div id="quiz-opts">
+      <div class="quiz-opt" id="qopt-0" onclick="answerQuiz(0)">Jørgen Juve</div><div class="quiz-opt" id="qopt-1" onclick="answerQuiz(1)">Tore André Flo</div><div class="quiz-opt" id="qopt-2" onclick="answerQuiz(2)">Ole Gunnar Solskjær</div><div class="quiz-opt" id="qopt-3" onclick="answerQuiz(3)">Erling Braut Haaland</div>
+    </div>
+    <div id="quiz-next" style="display:none">
+      <div id="quiz-feedback" style="font-size:14px;margin:12px 0;font-weight:500"></div>
+      <button class="btn" onclick="quizQ++;quizAnswered=false;renderQuiz()">Neste spørsmål →</button>
+    </div></div>
+</div>
+
+<!-- ══════════ FEST TAB ══════════ -->
+<div id="tab-fest" class="tab">
+  <div class="top-bar">
+    <h1>🎂 Mias bursdagsfest</h1>
+    <p>26. juni 2026 · Jens Tvedes veg 14, Trondheim</p>
+  </div>
+
+  <div class="card" style="text-align:center;padding:24px">
+    <div style="font-size:56px">🎂</div>
+    <h1 style="margin:10px 0 4px;font-size:24px">Gratulerer Mia!</h1>
+    <p class="muted">Bursdag + veranda + VM = perfekt kveld</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Hva skjer i kveld</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="row" style="gap:12px">
+        <div style="font-size:20px">18:30</div>
+        <div><div class="bold">Dørene åpner</div><div class="muted" style="font-size:13px">Velkomstdrink og veranda-innvielse</div></div>
+      </div>
+      <div class="row" style="gap:12px">
+        <div style="font-size:20px">19:00</div>
+        <div><div class="bold">Tipping stenger!</div><div class="muted" style="font-size:13px">Siste sjanse for VM-tipp</div></div>
+      </div>
+      <div class="row" style="gap:12px">
+        <div style="font-size:20px">19:30</div>
+        <div><div class="bold">Mini-games + quiz</div><div class="muted" style="font-size:13px">Bruk fanen «Spill» og «Quiz» her</div></div>
+      </div>
+      <div class="row" style="gap:12px">
+        <div style="font-size:20px">20:45</div>
+        <div><div class="bold">Mat serveres</div><div class="muted" style="font-size:13px">Klart til kampen</div></div>
+      </div>
+      <div class="row" style="gap:12px">
+        <div style="font-size:20px">21:00</div>
+        <div><div class="bold" style="color:var(--gold)">KAMPSTART 🇳🇴⚽</div><div class="muted" style="font-size:13px">Norge – Frankrike, Gillette Stadium</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fest-aktiviteter</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:var(--surface);border-radius:10px;padding:12px">
+        <div class="bold">🎯 Tipping</div>
+        <div class="muted" style="font-size:13px">Gjett kampresultat – vinneren hylles!</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:12px">
+        <div class="bold">⚽ Penaltysparka</div>
+        <div class="muted" style="font-size:13px">Hvem scorer flest i fanen «Spill»?</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:12px">
+        <div class="bold">🧠 VM-quiz</div>
+        <div class="muted" style="font-size:13px">Fotballquiz for alle – fanen «Quiz»</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:12px">
+        <div class="bold">🔔 Målvarsel</div>
+        <div class="muted" style="font-size:13px">Aktiver i «Live»-fanen for å få push ved mål</div>
+      </div>
+      <div style="background:var(--surface);border-radius:10px;padding:12px">
+        <div class="bold">🎮 Reaksjonstest</div>
+        <div class="muted" style="font-size:13px">Hvem er raskest i fanen «Spill»?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="text-align:center">
+    <div class="confetti-wrap">🎉🇳🇴🎂⚽🥂🎊</div>
+    <p class="muted" style="font-size:13px">Del lenken til denne siden med alle gjestene!</p>
+  </div>
+</div>
+
+<script>
+const QUIZ = [
+  {q:"Hvem er Norges toppscorer i VM-historien?",opts:["Jørgen Juve","Tore André Flo","Ole Gunnar Solskjær","Erling Braut Haaland"],ans:0},
+  {q:"Hva kalles Norges VM-seier mot Brasil i 1998?",opts:["VM-mirakelet","Mirakelet i Marseille","Det norske underet","Dramaet i Paris"],ans:1},
+  {q:"Hvem er Norges landslagstrener i VM 2026?",opts:["Lars Lagerbäck","Egil Olsen","Ståle Solbakken","Ole Gunnar Solskjær"],ans:2},
+  {q:"I hvilken gruppe er Norge i VM 2026?",opts:["Gruppe A","Gruppe D","Gruppe I","Gruppe L"],ans:2},
+  {q:"Hvor spilles Norge–Frankrike?",opts:["MetLife Stadium","Rose Bowl","Gillette Stadium","SoFi Stadium"],ans:2},
+  {q:"Hvem er Norges kaptein i VM 2026?",opts:["Sander Berge","Erling Braut Haaland","Martin Ødegaard","Alexander Sørloth"],ans:2},
+  {q:"Hvor mange lag er med i VM 2026?",opts:["32 lag","40 lag","48 lag","64 lag"],ans:2},
+  {q:"Når spilles finalen i VM 2026?",opts:["12. juli","19. juli","26. juli","2. august"],ans:1},
+];
+
+let state = {
+  scoreH:0, scoreA:0, status:"Ikke startet",
+  scorers:[], tips:[], notifOn:false,
+  penGoals:0, penSaves:0, penShots:0, penRecord:0, penActive:false, penDone:false,
+  rxPhase:"idle", rxStart:0, rxTimes:[], rxTimeout:null,
+  quizQ:0, quizScore:0, quizAnswered:false,
+  lastTotal:-1, fetchOk:false
+};
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+async function requestNotif(){
+  try{
+    const p = await Notification.requestPermission();
+    if(p==='granted'){
+      state.notifOn=true;
+      document.getElementById('notif-btn').textContent='Aktivert ✓';
+      document.getElementById('notif-btn').style.background='#27500A';
+      document.getElementById('notif-status-text').textContent='Du får varsel ved mål!';
+      new Notification('Mia VM-fest',{body:'Du vil nå få mål-varsler! Heia Norge 🇳🇴⚽'});
+    }else{
+      document.getElementById('notif-status-text').textContent='Tillatt ikke i innstillinger';
+    }
+  }catch(e){document.getElementById('notif-status-text').textContent='Støttes ikke i denne nettleseren';}
+}
+
+function goalFlash(homeScore, awayScore){
+  const f=document.getElementById('goal-flash');
+  document.getElementById('goal-flash-text').textContent=homeScore>state.scoreH?'🇳🇴 NORGE SCORER!':'🇫🇷 Frankrike scorer...';
+  document.getElementById('goal-flash-score').textContent='Norge '+homeScore+' – '+awayScore+' Frankrike';
+  f.classList.remove('hidden');
+  if(state.notifOn&&Notification.permission==='granted'){
+    new Notification('⚽ MÅL!'+(homeScore>state.scoreH?' NORGE!':' Frankrike'),{body:'Norge '+homeScore+' – '+awayScore+' Frankrike'});
+  }
+  setTimeout(()=>f.classList.add('hidden'),8000);
+}
+
+async function fetchLiveScore(){
+  document.getElementById('fetch-spinner').style.display='inline-block';
+  try{
+    const d = new Date('2026-06-26');
+    const dateStr = '2026-06-26';
+    const url = `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${dateStr}&s=Soccer`;
+    const r = await fetch(url,{signal:AbortSignal.timeout(8000)});
+    const data = await r.json();
+    if(data.events){
+      const m = data.events.find(e=>{
+        const ht=(e.strHomeTeam||'').toLowerCase(), at=(e.strAwayTeam||'').toLowerCase();
+        return (ht.includes('norway')&&at.includes('france'))||(ht.includes('france')&&at.includes('norway'));
+      });
+      if(m){
+        const isNorHome=(m.strHomeTeam||'').toLowerCase().includes('norway');
+        const h=isNorHome?parseInt(m.intHomeScore||0):parseInt(m.intAwayScore||0);
+        const a=isNorHome?parseInt(m.intAwayScore||0):parseInt(m.intHomeScore||0);
+        const tot=h+a;
+        if(tot>state.lastTotal&&state.lastTotal>=0) goalFlash(h,a);
+        state.lastTotal=tot;
+        state.scoreH=h; state.scoreA=a;
+        const st=m.strStatus||'';
+        state.status=st==='NS'?'Ikke startet':st==='HT'?'Pause':st==='FT'?'Slutt':st||'Ikke startet';
+        state.fetchOk=true;
+      }
+    }
+    document.getElementById('fetch-spinner').style.display='none';
+    document.getElementById('status-text').textContent=state.fetchOk?'Live · oppdateres hvert 30s':'Kampen er ikke startet ennå';
+    document.getElementById('last-updated').textContent='Sist oppdatert '+new Date().toLocaleTimeString('nb-NO');
+  }catch(e){
+    document.getElementById('fetch-spinner').style.display='none';
+    document.getElementById('status-text').textContent='Kan ikke hente live – bruk manuell oppdatering nedenfor';
+  }
+  renderScore();
+}
+
+function renderScore(){
+  document.getElementById('score-display').textContent=state.scoreH+' – '+state.scoreA;
+  const s=document.getElementById('status-text');
+  if(!s.textContent.includes('Live')&&!s.textContent.includes('Kan')) return;
+  if(state.status&&state.status!=='Ikke startet') document.getElementById('status-text').textContent=state.status+' ·  Live';
+  if(state.scorers.length){
+    document.getElementById('scorers-card').style.display='block';
+    document.getElementById('scorers-list').innerHTML=state.scorers.map(sc=>`<div style="padding:6px 0;border-bottom:1px solid var(--border);font-size:14px">${sc}</div>`).join('');
+  }
+}
+
+function setManualScore(){
+  const h=parseInt(document.getElementById('manual-home').value)||0;
+  const a=parseInt(document.getElementById('manual-away').value)||0;
+  const st=document.getElementById('manual-status').value;
+  const tot=h+a;
+  if(tot>state.lastTotal&&state.lastTotal>=0) goalFlash(h,a);
+  state.scoreH=h; state.scoreA=a; state.status=st; state.lastTotal=tot;
+  document.getElementById('status-text').textContent=st;
+  document.getElementById('fetch-spinner').style.display='none';
+  document.getElementById('last-updated').textContent='Manuelt oppdatert '+new Date().toLocaleTimeString('nb-NO');
+  renderScore();
+}
+
+function addScorer(){
+  const team=document.getElementById('scorer-team').value;
+  const name=document.getElementById('scorer-name').value.trim();
+  if(!name) return;
+  state.scorers.push(team+': '+name);
+  document.getElementById('scorer-name').value='';
+  renderScore();
+}
+
+async function loadTips(){
+  try{
+    const r = await window.storage.get('mia_tips_2026',true);
+    if(r) state.tips=JSON.parse(r.value);
+  }catch(e){}
+  renderLeaderboard();
+}
+
+async function submitTip(){
+  const name=document.getElementById('tip-name').value.trim();
+  const h=document.getElementById('tip-home').value;
+  const a=document.getElementById('tip-away').value;
+  const scorer=document.getElementById('tip-scorer').value;
+  const msg=document.getElementById('tip-msg');
+  if(!name){msg.textContent='❌ Skriv inn navnet ditt'; msg.style.color='var(--red)'; return;}
+  if(h===''||a===''){msg.textContent='❌ Fyll inn et resultat'; msg.style.color='var(--red)'; return;}
+  const tip={name,h:parseInt(h),a:parseInt(a),scorer,ts:Date.now()};
+  state.tips=state.tips.filter(t=>t.name.toLowerCase()!==name.toLowerCase());
+  state.tips.push(tip);
+  try{await window.storage.set('mia_tips_2026',JSON.stringify(state.tips),true);}catch(e){}
+  msg.textContent='✅ Tips lagret! Lykke til '+name+'!'; msg.style.color='#4ade80';
+  renderLeaderboard();
+  setTimeout(()=>{msg.textContent='';},3000);
+}
+
+function calcPoints(tip){
+  const h=state.scoreH, a=state.scoreA;
+  let pts=0;
+  if(tip.h===h&&tip.a===a) pts+=5;
+  else if((tip.h>tip.a&&h>a)||(tip.h<tip.a&&h<a)||(tip.h===tip.a&&h===a)) pts+=2;
+  if(tip.h===h) pts+=1;
+  const sc=tip.scorer||'';
+  if(sc&&!sc.includes('Ingen')&&!sc.includes('0-0')&&!sc.includes('Frankrike')) pts+=2;
+  return pts;
+}
+
+function renderLeaderboard(){
+  const lb=document.getElementById('leaderboard');
+  if(!state.tips.length){lb.innerHTML='<div class="muted" style="text-align:center;padding:20px 0;font-size:14px">Ingen tips ennå – vær den første!</div>';return;}
+  const sorted=[...state.tips].sort((a,b)=>calcPoints(b)-calcPoints(a));
+  const medals=['🥇','🥈','🥉'];
+  lb.innerHTML=sorted.map((t,i)=>`
+    <div class="tipp-row">
+      <div class="rank">${medals[i]||'  '+(i+1)}</div>
+      <div class="tipp-info">
+        <div class="tipp-name">${t.name}</div>
+        <div class="tipp-pick">🇳🇴 Norge ${t.h}–${t.a} Frankrike 🇫🇷${t.scorer?' · ⚽ '+t.scorer:''}</div>
+      </div>
+      <div class="tipp-pts">${calcPoints(t)} pts</div>
+    </div>`).join('');
+}
+
+let penShots=0, penGoals=0;
+function resetPenalty(){
+  penShots=0; penGoals=0;
+  document.getElementById('penalty-goals').textContent='0';
+  document.getElementById('penalty-saves').textContent='0';
+  document.getElementById('penalty-reset').style.display='none';
+  document.getElementById('penalty-result').textContent='';
+  document.getElementById('penalty-msg').textContent='Velg hvor du skyter!';
+  renderKicks();
+  ['cell-0','cell-1','cell-2'].forEach(id=>{
+    const c=document.getElementById(id);
+    c.classList.remove('keeper','scored','missed');
+    c.style.pointerEvents='auto';
+  });
+}
+function renderKicks(){
+  const ind=document.getElementById('kick-indicators');
+  ind.innerHTML=[0,1,2,3,4].map(i=>{
+    let cls='kick-dot';
+    if(i<penShots) cls+= (i<penGoals || (penShots<=5 && i<penGoals))?'':''; 
+    if(i===penShots&&penShots<5) cls+=' current';
+    return '<div class="'+cls+'" id="kick-'+i+'"></div>';
+  }).join('');
+}
+function updateKickDot(idx,goal){
+  const d=document.getElementById('kick-'+idx);
+  if(d) d.className='kick-dot '+(goal?'goal':'saved');
+}
+function shoot(cell){
+  if(penShots>=5) return;
+  const keeper=Math.floor(Math.random()*3);
+  const goal=cell!==keeper;
+  ['cell-0','cell-1','cell-2'].forEach(id=>{const c=document.getElementById(id);c.classList.remove('keeper','scored','missed');c.style.pointerEvents='none';});
+  document.getElementById('cell-'+keeper).classList.add('keeper');
+  document.getElementById('cell-'+cell).classList.add(goal?'scored':'missed');
+  if(goal) penGoals++;
+  updateKickDot(penShots,goal);
+  penShots++;
+  document.getElementById('penalty-goals').textContent=penGoals;
+  document.getElementById('penalty-saves').textContent=penShots-penGoals;
+  document.getElementById('penalty-msg').textContent=goal?'⚽ MÅL! 🎉':'🧤 Reddet!';
+  try{const r=parseInt(localStorage.getItem('penRecord')||'0');if(penGoals>r)localStorage.setItem('penRecord',penGoals);}catch(e){}
+  try{document.getElementById('penalty-record').textContent=localStorage.getItem('penRecord')||0;}catch(e){}
+  if(penShots>=5){
+    const msgs=['Jobb med skytinga..','Ikke verst!','Solid innsats!','Imponerende!','Perfekt! Haaland-nivå!'];
+    document.getElementById('penalty-result').textContent=msgs[penGoals]+' ('+penGoals+'/5 mål)';
+    document.getElementById('penalty-reset').style.display='block';
+  } else {
+    setTimeout(()=>{
+      ['cell-0','cell-1','cell-2'].forEach(id=>{const c=document.getElementById(id);c.classList.remove('keeper','scored','missed');c.style.pointerEvents='auto';});
+      document.getElementById('penalty-msg').textContent='Skyting '+(penShots+1)+'/5 – velg retning!';
+    },900);
+  }
+}
+resetPenalty();
+
+let rxPhase='idle', rxStart=0, rxTimes=[], rxT=null;
+function reactionClick(){
+  const box=document.getElementById('refbox');
+  const msg=document.getElementById('reaction-msg');
+  if(rxPhase==='idle'){
+    rxPhase='waiting'; box.textContent='🟡'; msg.textContent='Venter...';
+    const delay=1500+Math.random()*3000;
+    rxT=setTimeout(()=>{rxPhase='go';rxStart=Date.now();box.textContent='🟥';msg.textContent='TRYKK NÅ!';},delay);
+  } else if(rxPhase==='waiting'){
+    clearTimeout(rxT); rxPhase='idle'; box.textContent='🟢'; msg.textContent='For tidlig! Prøv igjen';
+  } else if(rxPhase==='go'){
+    const t=Date.now()-rxStart; rxPhase='idle';
+    rxTimes.push(t); if(rxTimes.length>5) rxTimes.shift();
+    const avg=Math.round(rxTimes.reduce((a,b)=>a+b,0)/rxTimes.length);
+    const best=Math.min(...rxTimes);
+    box.textContent='🟢'; msg.textContent='Klikk for å starte';
+    const grade=t<200?'Lynrask!':t<300?'Veldig bra!':t<400?'Bra!':t<500?'OK':'Ganske treg...';
+    document.getElementById('reaction-results').innerHTML=
+      `<div class="card" style="margin:0;padding:12px">
+        <div style="font-size:20px;font-weight:700;color:${t<300?'#4ade80':'var(--gold)'}">${t} ms – ${grade}</div>
+        <div class="muted" style="font-size:12px">Best: ${best} ms · Snitt: ${avg} ms (siste ${rxTimes.length} forsøk)</div>
+      </div>`;
+  }
+}
+
+let quizQ=0, quizScore=0, quizAnswered=false;
+function renderQuiz(){
+  const card=document.getElementById('quiz-card');
+  if(quizQ>=QUIZ.length){
+    const pct=Math.round(quizScore/QUIZ.length*100);
+    const msg=pct>=80?'Fotballegend!':pct>=60?'Solid VM-kunnskap!':pct>=40?'Ikke verst!':'Øv deg til neste kamp!';
+    card.innerHTML=`<div style="text-align:center;padding:16px">
+      <div style="font-size:48px">${pct>=80?'🏆':pct>=60?'⭐':'⚽'}</div>
+      <h2 style="margin:10px 0">${msg}</h2>
+      <div style="font-size:32px;font-weight:800;color:var(--gold)">${quizScore}/${QUIZ.length}</div>
+      <div class="muted" style="margin:8px 0 16px">${pct}% riktige svar</div>
+      <button class="btn" onclick="quizQ=0;quizScore=0;quizAnswered=false;renderQuiz()">Ta quizen igjen</button>
+    </div>`;
+    return;
+  }
+  const q=QUIZ[quizQ];
+  card.innerHTML=`
+    <div class="card-title">${quizQ+1} av ${QUIZ.length}</div>
+    <div style="background:var(--surface);border-radius:6px;height:4px;margin-bottom:14px">
+      <div style="background:var(--blue);height:4px;border-radius:6px;width:${(quizQ/QUIZ.length)*100}%"></div>
+    </div>
+    <h3 style="margin-bottom:14px;line-height:1.5">${q.q}</h3>
+    <div id="quiz-opts">
+      ${q.opts.map((o,i)=>`<div class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${o}</div>`).join('')}
+    </div>
+    <div id="quiz-next" style="display:none">
+      <div id="quiz-feedback" style="font-size:14px;margin:12px 0;font-weight:500"></div>
+      <button class="btn" onclick="quizQ++;quizAnswered=false;renderQuiz()">Neste spørsmål →</button>
+    </div>`;
+}
+function answerQuiz(i){
+  if(quizAnswered) return; quizAnswered=true;
+  const q=QUIZ[quizQ];
+  document.querySelectorAll('.quiz-opt').forEach((el,j)=>{
+    el.style.pointerEvents='none';
+    if(j===q.ans) el.classList.add('correct');
+    else if(j===i&&i!==q.ans) el.classList.add('wrong');
+    else el.classList.add('reveal');
+  });
+  if(i===q.ans) quizScore++;
+  const fb=document.getElementById('quiz-feedback');
+  fb.textContent=i===q.ans?'✅ Riktig! Bra jobba!':'❌ Feil – riktig svar er uthevet over';
+  fb.style.color=i===q.ans?'#4ade80':'var(--red)';
+  document.getElementById('quiz-next').style.display='block';
+}
+renderQuiz();
+
+fetchLiveScore();
+setInterval(fetchLiveScore,30000);
+loadTips();
+</script>
+
+
+</body></html>
